@@ -6,11 +6,9 @@ import { useAuth } from '../AuthContext';
 
 export type UserRole = 'family' | 'provider' | 'attendee' | 'admin';
 
-type AllowedRolesType = string[] | readonly string[] | UserRole[] | readonly UserRole[] | Array<string | UserRole> | ReadonlyArray<string | UserRole> | (string | UserRole)[] | any[] | readonly any[] | ['family'] | ['provider'] | ['family', 'provider'] | string;
-
 interface ProtectedRouteNextProps {
   children: ReactNode;
-  allowedRoles?: AllowedRolesType;
+  allowedRoles?: string[] | readonly string[] | UserRole[] | readonly UserRole[] | Array<string | UserRole> | ReadonlyArray<string | UserRole> | (string | UserRole)[] | any[] | readonly any[] | any;
 }
 
 export default function ProtectedRouteNext({ children, allowedRoles = [] }: ProtectedRouteNextProps) {
