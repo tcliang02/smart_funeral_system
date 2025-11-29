@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import BookingProgressBar from "../components/BookingProgressBar";
+import { supabase } from "../supabaseClient"; // Import Supabase client
 
 export default function Payment() {
   const router = useRouter();
@@ -172,10 +173,9 @@ export default function Payment() {
       // Only attempt upload if we don't have paths yet and have files to upload
       // (This is a fallback/legacy path, primarily used if files weren't uploaded in checkout)
       if (uploadedFilePaths.length === 0 && (booking.deceasedPhoto || booking.deathCert || booking.additionalDocs?.length > 0)) {
-        console.log('📤 Checking for files to upload...');
+        console.log('📤 Checking for files to upload directly to Supabase...');
         
-        const formData = new FormData();
-        let fileCount = 0;
+        const filesToUpload = [];
         
         // Helper function to check if value is a valid File/Blob
         const isValidFile = (value) => {
@@ -183,104 +183,96 @@ export default function Payment() {
         };
 
         // Add deceased photo
-        if (booking.deceasedPhoto) {
-          console.log('  → Deceased photo type:', typeof booking.deceasedPhoto, booking.deceasedPhoto instanceof File ? 'File' : booking.deceasedPhoto instanceof Blob ? 'Blob' : 'Other', booking.deceasedPhoto);
-          
-          if (isValidFile(booking.deceasedPhoto)) {
-            formData.append('deceasedPhoto', booking.deceasedPhoto, booking.deceasedPhoto.name || 'deceasedPhoto.jpg');
-            console.log('  → Added deceased photo:', booking.deceasedPhoto.name || 'unnamed');
-            fileCount++;
-          } else {
-            console.log('  → Skipping deceased photo - not a valid File/Blob (likely placeholder or already uploaded):', typeof booking.deceasedPhoto);
-          }
+        if (booking.deceasedPhoto && isValidFile(booking.deceasedPhoto)) {
+          filesToUpload.push({ 
+            file: booking.deceasedPhoto, 
+            type: 'deceasedPhoto',
+            name: booking.deceasedPhoto.name || 'deceasedPhoto.jpg'
+          });
         }
         
         // Add death certificate
-        if (booking.deathCert) {
-          console.log('  → Death cert type:', typeof booking.deathCert, booking.deathCert instanceof File ? 'File' : booking.deathCert instanceof Blob ? 'Blob' : 'Other', booking.deathCert);
-          
-          if (isValidFile(booking.deathCert)) {
-            formData.append('deathCert', booking.deathCert, booking.deathCert.name || 'deathCert.pdf');
-            console.log('  → Added death certificate:', booking.deathCert.name || 'unnamed');
-            fileCount++;
-          } else {
-            console.log('  → Skipping death certificate - not a valid File/Blob:', typeof booking.deathCert);
-          }
+        if (booking.deathCert && isValidFile(booking.deathCert)) {
+          filesToUpload.push({ 
+            file: booking.deathCert, 
+            type: 'deathCert',
+            name: booking.deathCert.name || 'deathCert.pdf'
+          });
         }
         
         // Add additional documents
         if (booking.additionalDocs && booking.additionalDocs.length > 0) {
           booking.additionalDocs.forEach((doc, index) => {
-            console.log(`  → Additional doc ${index + 1} type:`, typeof doc, doc instanceof File ? 'File' : doc instanceof Blob ? 'Blob' : 'Other', doc);
-            
             if (isValidFile(doc)) {
-              formData.append(`additionalDoc_${index}`, doc, doc.name || `additionalDoc_${index}.pdf`);
-              console.log(`  → Added additional doc ${index + 1}:`, doc.name || 'unnamed');
-              fileCount++;
-            } else {
-              console.log(`  → Skipping additional doc ${index + 1} - not a valid File/Blob:`, typeof doc);
+              filesToUpload.push({ 
+                file: doc, 
+                type: `additionalDoc_${index}`,
+                name: doc.name || `additionalDoc_${index}.pdf`
+              });
             }
           });
         }
         
-        if (fileCount > 0) {
-          // Add temporary booking reference for file naming
-          formData.append('booking_reference', 'TEMP_' + Date.now());
-          
-          // Debug: Log FormData contents before sending
-          console.log('📋 FormData contents before send:');
-          for (const [key, value] of formData.entries()) {
-            if (value instanceof File) {
-              console.log(`  - ${key}: File(${value.name}, ${value.size} bytes, ${value.type})`);
-            } else if (value instanceof Blob) {
-              console.log(`  - ${key}: Blob(${value.size} bytes, ${value.type})`);
-            } else {
-              console.log(`  - ${key}: ${typeof value} = ${String(value).substring(0, 50)}`);
+        if (filesToUpload.length > 0) {
+          const uploadResults = [];
+          const errors = [];
+          const timestamp = Date.now();
+          const bookingRef = 'TEMP_' + timestamp;
+
+          console.log(`📋 Starting direct upload for ${filesToUpload.length} files...`);
+
+          for (const item of filesToUpload) {
+            try {
+              // Create a unique file path: booking_ref/type_timestamp_filename
+              const safeName = item.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+              const filePath = `${bookingRef}/${item.type}_${timestamp}_${safeName}`;
+              
+              console.log(`  → Uploading ${item.type} to ${filePath}...`);
+
+              const { data, error } = await supabase.storage
+                .from('uploads')
+                .upload(filePath, item.file, {
+                  cacheControl: '3600',
+                  upsert: false
+                });
+
+              if (error) throw error;
+
+              // Get public URL
+              const { data: publicUrlData } = supabase.storage
+                .from('uploads')
+                .getPublicUrl(filePath);
+
+              const publicUrl = publicUrlData.publicUrl;
+              console.log(`  ✅ Uploaded ${item.type}: ${publicUrl}`);
+              
+              uploadResults.push({
+                field: item.type,
+                path: filePath,
+                url: publicUrl,
+                name: item.name,
+                size: item.file.size,
+                type: item.file.type
+              });
+
+            } catch (uploadError) {
+              console.error(`❌ Failed to upload ${item.type}:`, uploadError);
+              errors.push(`${item.name}: ${uploadError.message}`);
             }
           }
+            
+          if (uploadResults.length > 0) {
+            uploadedFilePaths = uploadResults; // Set the uploaded paths
+            console.log('✅ All files processed successfully:', uploadedFilePaths);
+          }
           
-          try {
-            const uploadResponse = await fetch('/api/backend/uploadFiles', {
-              method: 'POST',
-              headers: {
-                'Authorization': `Bearer ${token}`
-                // Don't set Content-Type for FormData - browser will set it with boundary
-              },
-              body: formData
-            });
-            
-            // Check if response is OK before parsing JSON
-            if (!uploadResponse.ok) {
-              let errorMessage = `HTTP ${uploadResponse.status}: ${uploadResponse.statusText}`;
-              try {
-                const errorData = await uploadResponse.json();
-                errorMessage = errorData.message || errorData.error || errorMessage;
-              } catch (e) {
-                // If JSON parsing fails, use the status text
-              }
-              throw new Error(errorMessage);
-            }
-            
-            const uploadResult = await uploadResponse.json();
-            console.log('📤 Upload result:', uploadResult);
-            
-            if (uploadResult.success) {
-              uploadedFilePaths = uploadResult.files;
-              console.log('✅ Files uploaded successfully:', uploadedFilePaths);
-            } else {
-              const errorDetails = uploadResult.errors && uploadResult.errors.length > 0 
-                ? `\n\nErrors:\n${uploadResult.errors.join('\n')}`
-                : '';
-              console.error('❌ File upload failed:', uploadResult.message, uploadResult);
-              alert(`⚠️ Warning: File upload failed: ${uploadResult.message}${errorDetails}\n\nBooking will continue without files.`);
-            }
-          } catch (uploadError) {
-            console.error('❌ File upload error:', uploadError);
-            const errorMsg = uploadError.message || 'Could not upload files';
-            alert(`⚠️ Warning: File upload failed (${errorMsg}). You can continue, but files may need to be re-sent.`);
+          if (errors.length > 0) {
+            const errorMsg = errors.join('\n');
+            console.error('❌ Some files failed to upload:', errors);
+            alert(`⚠️ Warning: Some files failed to upload:\n${errorMsg}\n\nYou can continue, but files may need to be re-sent.`);
           }
         } else {
-          console.log("ℹ️ No new files to upload (using pre-uploaded files or none found).");
+          console.log("ℹ️ No new valid files to upload.");
         }
       }
 
