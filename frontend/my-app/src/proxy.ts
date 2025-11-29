@@ -5,7 +5,7 @@ import { logger } from '@/lib/logger';
 // ============================================
 // EDGE-COMPATIBLE JWT VERIFICATION
 // ============================================
-// Middleware runs in Edge runtime (no Node.js modules)
+// Proxy runs in Edge runtime (no Node.js modules)
 // So we need Edge-compatible JWT verification
 
 /**
@@ -137,10 +137,10 @@ const publicApiEndpoints = [
 ];
 
 // ============================================
-// MIDDLEWARE FUNCTION
+// PROXY FUNCTION
 // ============================================
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   // ============================================
@@ -157,7 +157,7 @@ export function middleware(request: NextRequest) {
     const token = authHeader?.replace('Bearer ', '') || null;
 
     if (!token) {
-      logger.debug('Middleware blocking request - no token', { pathname });
+      logger.debug('Proxy blocking request - no token', { pathname });
       return NextResponse.json(
         {
           success: false,
@@ -175,7 +175,7 @@ export function middleware(request: NextRequest) {
     const auth = verifyAuthEdge(request.headers);
 
     if (!auth) {
-      logger.debug('Middleware blocking request - invalid token', { pathname });
+      logger.debug('Proxy blocking request - invalid token', { pathname });
       return NextResponse.json(
         {
           success: false,
@@ -194,7 +194,7 @@ export function middleware(request: NextRequest) {
     requestHeaders.set('x-user-id', auth.user_id.toString());
     requestHeaders.set('x-user-role', auth.role);
 
-    logger.debug('Middleware allowing request - valid token', {
+    logger.debug('Proxy allowing request - valid token', {
       pathname,
       userId: auth.user_id
     });
@@ -217,19 +217,19 @@ export function middleware(request: NextRequest) {
 
   // For protected frontend routes, we check auth in the component level
   // (using ProtectedRoute component)
-  // Middleware can't easily access client-side auth state
+  // Proxy can't easily access client-side auth state
   return NextResponse.next();
 }
 
 // ============================================
-// MIDDLEWARE CONFIG
+// PROXY CONFIG
 // ============================================
 
 export const config = {
   matcher: [
     /*
      * Match all request paths including API routes
-     * Explicitly include API routes to ensure middleware runs
+     * Explicitly include API routes to ensure proxy runs
      */
     '/api/backend/:path*',
     /*
