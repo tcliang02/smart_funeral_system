@@ -7,7 +7,7 @@ import Checkout from '../../../pages/Checkout';
 
 export default function CheckoutPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['family'] as const}>
+    <ProtectedRouteNext allowedRoles={['family']}>
       <Checkout />
     </ProtectedRouteNext>
   );
