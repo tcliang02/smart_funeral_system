@@ -4,11 +4,6 @@ import ClientAuthProvider from './ClientAuthProvider';
 import FloatingChatbot from '../components/FloatingChatbot';
 import FeedbackButton from '../components/FeedbackButton';
 
-// Force dynamic rendering for all pages to prevent useAuth prerendering errors
-export const dynamic = 'force-dynamic';
-export const dynamicParams = true;
-export const revalidate = 0;
-
 export const metadata: Metadata = {
   title: 'ZENLINK',
   description: 'Comprehensive funeral service management platform',
