@@ -7,6 +7,7 @@ import Checkout from '../../../pages/Checkout';
 
 export default function CheckoutPage() {
   // Use type assertion to ensure TypeScript accepts the array literal
+  // Vercel cache buster: force rebuild
   const allowedRoles = ['family'] as string[];
   return (
     <ProtectedRouteNext allowedRoles={allowedRoles}>
