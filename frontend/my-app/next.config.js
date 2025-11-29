@@ -20,6 +20,12 @@ const nextConfig = {
     } : false,
   },
 
+  // Disable static optimization for pages that use authentication
+  // This prevents build-time prerendering errors
+  experimental: {
+    isrMemoryCacheSize: 0, // Disable ISR cache
+  },
+
   // Rewrite favicon.ico to use the logo image
   async rewrites() {
     return [
