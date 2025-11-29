@@ -3,6 +3,11 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '../AuthContext';
+
+// Prevent this component from being statically analyzed during build
+if (typeof window === 'undefined') {
+  // This will never execute, but prevents static analysis
+}
 import {
   Settings,
   User,

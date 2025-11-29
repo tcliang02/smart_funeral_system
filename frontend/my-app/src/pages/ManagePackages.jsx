@@ -4,6 +4,9 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../AuthContext";
 
+// This component uses useAuth, so it must only render on client side
+// The page wrapper has export const dynamic = 'force-dynamic' to prevent static generation
+
 export default function ManagePackages() {
   const router = useRouter();
   const { user } = useAuth();
