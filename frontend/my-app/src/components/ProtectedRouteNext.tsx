@@ -8,7 +8,7 @@ export type UserRole = 'family' | 'provider' | 'attendee' | 'admin';
 
 interface ProtectedRouteNextProps {
   children: ReactNode;
-  allowedRoles?: string[] | readonly string[] | UserRole[] | readonly UserRole[];
+  allowedRoles?: string[] | readonly string[] | UserRole[] | readonly UserRole[] | Array<string | UserRole>;
 }
 
 export default function ProtectedRouteNext({ children, allowedRoles = [] }: ProtectedRouteNextProps) {

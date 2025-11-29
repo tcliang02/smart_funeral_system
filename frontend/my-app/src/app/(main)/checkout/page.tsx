@@ -6,8 +6,9 @@ import ProtectedRouteNext from '../../../components/ProtectedRouteNext';
 import Checkout from '../../../pages/Checkout';
 
 export default function CheckoutPage() {
+  const allowedRoles: string[] = ['family'];
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={allowedRoles}>
       <Checkout />
     </ProtectedRouteNext>
   );
