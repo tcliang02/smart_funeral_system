@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Path Test</title>
+    <script>
+        // Function to log results to the page
+        function log(message, isError = false) {
+            const logElem = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.className = isError ? 'error' : 'success';
+            entry.textContent = message;
+            logElem.appendChild(entry);
+        }
+        
+        // Test all three API access patterns
+        async function testPaths() {
+            // Clear log
+            document.getElementById('log').innerHTML = '';
+            
+            const paths = [
+                '/backend/test_cors.php',
+                '/smart_funeral_system/backend/test_cors.php',
+                'http://localhost/smart_funeral_system/backend/test_cors.php'
+            ];
+            
+            for (const path of paths) {
+                try {
+                    log(`Testing: ${path}...`);
+                    const response = await fetch(path);
+                    const data = await response.json();
+                    log(`✅ ${path}: SUCCESS - ${data.message}`);
+                } catch (err) {
+                    log(`❌ ${path}: ERROR - ${err.message}`, true);
+                }
+            }
+        }
+        
+        // Test both API patterns with provider ID
+        async function testAvailability() {
+            const providerId = document.getElementById('providerId').value;
+            
+            // Clear log
+            document.getElementById('log').innerHTML = '';
+            
+            const paths = [
+                `/backend/manageProviderAvailability.php?provider_id=${providerId}&start_date=2025-10-01&end_date=2025-12-31`,
+                `/smart_funeral_system/backend/manageProviderAvailability.php?provider_id=${providerId}&start_date=2025-10-01&end_date=2025-12-31`
+            ];
+            
+            for (const path of paths) {
+                try {
+                    log(`Testing: ${path}...`);
+                    const startTime = performance.now();
+                    const response = await fetch(path);
+                    const endTime = performance.now();
+                    const data = await response.json();
+                    
+                    log(`✅ ${path}: SUCCESS - ${(endTime - startTime).toFixed(0)}ms`);
+                    log(`Found ${data.unavailable_dates ? data.unavailable_dates.length : 0} unavailable dates`);
+                } catch (err) {
+                    log(`❌ ${path}: ERROR - ${err.message}`, true);
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; }
+        button { padding: 8px 16px; margin: 5px; }
+        #log { margin: 20px 0; padding: 10px; border: 1px solid #ddd; min-height: 200px; }
+        .success { color: green; margin: 5px 0; }
+        .error { color: red; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>API Path Testing</h1>
+    
+    <div>
+        <button onclick="testPaths()">Test Basic Paths</button>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <label for="providerId">Provider ID:</label>
+        <input type="number" id="providerId" value="3">
+        <button onclick="testAvailability()">Test Availability API</button>
+    </div>
+    
+    <div id="log">
+        <!-- Results will be shown here -->
+    </div>
+</body>
+</html>

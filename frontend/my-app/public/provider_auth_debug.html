@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Auth Debug Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    h1 {
+      color: #333;
+    }
+    .section {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 10px;
+      overflow: auto;
+      border-radius: 4px;
+      max-height: 300px;
+    }
+    .error {
+      color: red;
+    }
+    .success {
+      color: green;
+    }
+    input[type="text"], input[type="number"] {
+      padding: 8px;
+      width: 100%;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Provider Authentication Debug Tool</h1>
+    
+    <div class="section">
+      <h2>Local Storage Inspector</h2>
+      <button id="checkStorage">Check Storage</button>
+      <button id="clearStorage">Clear All Storage</button>
+      <pre id="storageOutput">Click "Check Storage" to view localStorage contents...</pre>
+    </div>
+    
+    <div class="section">
+      <h2>Check Provider Auth</h2>
+      <div>
+        <label for="providerId">Provider ID:</label>
+        <input type="number" id="providerId" placeholder="Enter provider ID">
+        <button id="checkProvider">Check Provider</button>
+      </div>
+      <pre id="providerOutput">Results will appear here...</pre>
+    </div>
+    
+    <div class="section">
+      <h2>List All Providers</h2>
+      <button id="listProviders">List All Providers</button>
+      <pre id="providersListOutput">Results will appear here...</pre>
+    </div>
+    
+    <div class="section">
+      <h2>Auth Flow Check</h2>
+      <div>
+        <label for="userId">User ID:</label>
+        <input type="number" id="userId" placeholder="Enter user ID">
+        <button id="checkAuthFlow">Check Auth Flow</button>
+      </div>
+      <pre id="authFlowOutput">Results will appear here...</pre>
+    </div>
+  </div>
+
+  <script>
+    // API helpers
+    const API_BASE = '/backend';
+    
+    async function get(endpoint, params = {}) {
+      // Build URL with query params
+      const url = new URL(`${API_BASE}/${endpoint}`, window.location.origin);
+      Object.keys(params).forEach(key => {
+        if (params[key] !== undefined && params[key] !== null) {
+          url.searchParams.append(key, params[key]);
+        }
+      });
+      
+      // Set headers
+      const headers = {
+        'Content-Type': 'application/json'
+      };
+      
+      try {
+        const res = await fetch(url.toString(), { method: 'GET', headers });
+        return res.json();
+      } catch (error) {
+        console.error('API Error:', error);
+        return { error: error.message };
+      }
+    }
+    
+    async function post(endpoint, body) {
+      const headers = {
+        'Content-Type': 'application/json'
+      };
+      
+      try {
+        const res = await fetch(`${API_BASE}/${endpoint}`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(body),
+        });
+        return res.json();
+      } catch (error) {
+        console.error('API Error:', error);
+        return { error: error.message };
+      }
+    }
+    
+    // Event listeners
+    document.getElementById('checkStorage').addEventListener('click', function() {
+      const output = document.getElementById('storageOutput');
+      
+      try {
+        const storage = {
+          token: localStorage.getItem('token'),
+          user: JSON.parse(localStorage.getItem('user') || 'null'),
+          provider: JSON.parse(localStorage.getItem('provider') || 'null')
+        };
+        
+        output.innerHTML = JSON.stringify(storage, null, 2);
+        output.classList.remove('error');
+        output.classList.add('success');
+      } catch (error) {
+        output.innerHTML = `Error: ${error.message}`;
+        output.classList.remove('success');
+        output.classList.add('error');
+      }
+    });
+    
+    document.getElementById('clearStorage').addEventListener('click', function() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('provider');
+      
+      const output = document.getElementById('storageOutput');
+      output.innerHTML = 'Storage cleared!';
+      output.classList.remove('error');
+      output.classList.add('success');
+    });
+    
+    document.getElementById('checkProvider').addEventListener('click', async function() {
+      const output = document.getElementById('providerOutput');
+      const providerId = document.getElementById('providerId').value;
+      
+      output.innerHTML = 'Loading...';
+      
+      try {
+        const result = await get('debug_provider_auth.php', {
+          action: 'check_provider_exists',
+          provider_id: providerId
+        });
+        
+        output.innerHTML = JSON.stringify(result, null, 2);
+        output.classList.toggle('success', result.success);
+        output.classList.toggle('error', !result.success);
+      } catch (error) {
+        output.innerHTML = `Error: ${error.message}`;
+        output.classList.remove('success');
+        output.classList.add('error');
+      }
+    });
+    
+    document.getElementById('listProviders').addEventListener('click', async function() {
+      const output = document.getElementById('providersListOutput');
+      output.innerHTML = 'Loading...';
+      
+      try {
+        const result = await get('debug_provider_auth.php', {
+          action: 'list_all_providers'
+        });
+        
+        output.innerHTML = JSON.stringify(result, null, 2);
+        output.classList.toggle('success', result.success);
+        output.classList.toggle('error', !result.success);
+      } catch (error) {
+        output.innerHTML = `Error: ${error.message}`;
+        output.classList.remove('success');
+        output.classList.add('error');
+      }
+    });
+    
+    document.getElementById('checkAuthFlow').addEventListener('click', async function() {
+      const output = document.getElementById('authFlowOutput');
+      const userId = document.getElementById('userId').value;
+      
+      output.innerHTML = 'Loading...';
+      
+      try {
+        const result = await post('debug_provider_auth.php', {
+          action: 'check_auth_flow',
+          user_id: userId
+        });
+        
+        output.innerHTML = JSON.stringify(result, null, 2);
+        output.classList.toggle('success', result.success);
+        output.classList.toggle('error', !result.success);
+      } catch (error) {
+        output.innerHTML = `Error: ${error.message}`;
+        output.classList.remove('success');
+        output.classList.add('error');
+      }
+    });
+  </script>
+</body>
+</html>

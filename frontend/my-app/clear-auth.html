@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Auth Data</title>
+</head>
+<body>
+    <h1>Clearing Authentication Data</h1>
+    <p>This will clear any cached login data...</p>
+    
+    <script>
+        // Clear all authentication data
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.clear();
+        
+        console.log('Cleared localStorage');
+        document.body.innerHTML += '<p style="color: green;">✅ Authentication data cleared successfully!</p>';
+        document.body.innerHTML += '<p><a href="/">Return to Home</a> | <a href="/login">Go to Login</a></p>';
+    </script>
+</body>
+</html>

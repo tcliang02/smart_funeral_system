@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1, h2 { color: #333; }
+        textarea { width: 100%; height: 200px; margin: 10px 0; font-family: monospace; }
+        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        pre { background-color: #f5f5f5; padding: 10px; overflow: auto; }
+        .response { margin-top: 20px; border: 1px solid #ddd; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Package API Test Tool</h1>
+    <p>Use this tool to test API requests to the backend</p>
+
+    <div>
+        <h2>Test Request</h2>
+        <div>
+            <label for="method">Method:</label>
+            <select id="method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT" selected>PUT</option>
+                <option value="DELETE">DELETE</option>
+            </select>
+
+            <label for="endpoint">Endpoint:</label>
+            <select id="endpoint">
+                <option value="/backend/managePackage.php">managePackage.php</option>
+                <option value="/backend/test_api_debug.php">test_api_debug.php</option>
+                <option value="/backend/deletePackage.php">deletePackage.php</option>
+            </select>
+        </div>
+
+        <div>
+            <h3>Request Body (JSON):</h3>
+            <textarea id="requestBody">{
+  "package_id": 5,
+  "name": "Test Package Update",
+  "description": "This is a test update",
+  "price": 299.99,
+  "duration_hours": 2,
+  "capacity": 50,
+  "location_type": "indoor",
+  "features": ["Feature 1", "Feature 2"]
+}</textarea>
+        </div>
+
+        <button id="sendRequest">Send Request</button>
+    </div>
+
+    <div class="response">
+        <h2>Response</h2>
+        <pre id="responseStatus"></pre>
+        <pre id="responseHeaders"></pre>
+        <pre id="responseBody"></pre>
+    </div>
+
+    <script>
+        document.getElementById('sendRequest').addEventListener('click', async () => {
+            const method = document.getElementById('method').value;
+            const endpoint = document.getElementById('endpoint').value;
+            const requestBody = document.getElementById('requestBody').value;
+            
+            try {
+                // Get token from localStorage if available
+                const token = localStorage.getItem('token') || '';
+                
+                console.log(`Sending ${method} request to ${endpoint}`);
+                console.log('Request body:', requestBody);
+                
+                const headers = {
+                    'Content-Type': 'application/json'
+                };
+                
+                if (token) {
+                    headers['Authorization'] = `Bearer ${token}`;
+                }
+                
+                const requestOptions = {
+                    method: method,
+                    headers: headers
+                };
+                
+                // Add body for non-GET requests
+                if (method !== 'GET') {
+                    requestOptions.body = requestBody;
+                }
+                
+                const response = await fetch(endpoint, requestOptions);
+                
+                // Display response status
+                document.getElementById('responseStatus').textContent = 
+                    `Status: ${response.status} ${response.statusText}`;
+                
+                // Display response headers
+                const headerText = [...response.headers.entries()]
+                    .map(([key, value]) => `${key}: ${value}`)
+                    .join('\n');
+                document.getElementById('responseHeaders').textContent = headerText;
+                
+                // Get and display response body
+                const responseText = await response.text();
+                document.getElementById('responseBody').textContent = responseText;
+                
+                try {
+                    // Try to parse as JSON for console logging
+                    const jsonResponse = JSON.parse(responseText);
+                    console.log('Response JSON:', jsonResponse);
+                } catch (e) {
+                    console.log('Response is not JSON:', responseText);
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('responseBody').textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

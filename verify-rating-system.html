@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating System Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .check-item {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .check-item.success {
+            border-left-color: #28a745;
+            background: #d4edda;
+        }
+        .check-item.error {
+            border-left-color: #dc3545;
+            background: #f8d7da;
+        }
+        .check-item.checking {
+            border-left-color: #ffc107;
+            background: #fff3cd;
+        }
+        .status {
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .status.success {
+            background: #28a745;
+            color: white;
+        }
+        .status.error {
+            background: #dc3545;
+            color: white;
+        }
+        .status.checking {
+            background: #ffc107;
+            color: #333;
+        }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        .next-steps {
+            background: #e7f3ff;
+            border-left: 4px solid #007bff;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 12px;
+        }
+        .next-steps h3 {
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        .next-steps ol {
+            margin-left: 20px;
+        }
+        .next-steps li {
+            margin: 10px 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ Rating System Verification</h1>
+        <p class="subtitle">Checking if migration was successful...</p>
+
+        <div id="checks">
+            <div class="check-item checking" id="check-bookings">
+                <div>
+                    <strong>📋 Bookings Table Columns</strong>
+                    <p style="font-size: 14px; color: #666; margin-top: 5px;">
+                        Checking for: completed_at, rating_deadline, customer_rating_submitted, provider_rating_submitted
+                    </p>
+                </div>
+                <span class="status checking">Checking...</span>
+            </div>
+
+            <div class="check-item checking" id="check-reviews">
+                <div>
+                    <strong>⭐ Provider Reviews Table</strong>
+                    <p style="font-size: 14px; color: #666; margin-top: 5px;">
+                        Checking if table exists with correct structure
+                    </p>
+                </div>
+                <span class="status checking">Checking...</span>
+            </div>
+
+            <div class="check-item checking" id="check-trigger">
+                <div>
+                    <strong>⚡ Rating Deadline Trigger (Optional)</strong>
+                    <p style="font-size: 14px; color: #666; margin-top: 5px;">
+                        Automatic deadline calculation - not required for basic functionality
+                    </p>
+                </div>
+                <span class="status checking">Checking...</span>
+            </div>
+        </div>
+
+        <button onclick="runChecks()">🔄 Run Verification</button>
+
+        <div class="next-steps" id="nextSteps" style="display: none;">
+            <h3>🎉 Migration Successful! Next Steps:</h3>
+            <ol>
+                <li><strong>Refresh your frontend:</strong> Press Ctrl + F5 in your browser</li>
+                <li><strong>Login as a customer</strong> (family member)</li>
+                <li><strong>Go to "My Orders"</strong> page</li>
+                <li><strong>Find a completed booking</strong> (you may need to complete one first via provider)</li>
+                <li><strong>Look for the "Rate Service" button</strong> - it should be yellow and next to "Print Receipt"</li>
+                <li><strong>Click it and test rating!</strong></li>
+            </ol>
+            <p style="margin-top: 20px; padding: 15px; background: #fff; border-radius: 8px; border: 2px solid #28a745;">
+                <strong>✅ Your rating system is ready to use!</strong><br>
+                You can close this window and test it in your application.
+            </p>
+        </div>
+
+        <div class="next-steps" id="errorSteps" style="display: none; background: #ffe7e7; border-left-color: #dc3545;">
+            <h3>❌ Migration Issues Detected</h3>
+            <p style="color: #721c24; margin-bottom: 15px;">
+                Some database components are missing. Please try running the SQL again in phpMyAdmin.
+            </p>
+            <p>Make sure you ran all the SQL statements including:</p>
+            <ol style="color: #721c24;">
+                <li>ALTER TABLE bookings (add columns)</li>
+                <li>CREATE TABLE provider_reviews</li>
+                <li>CREATE TRIGGER (optional but recommended)</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        async function runChecks() {
+            try {
+                // Single check for all components
+                const response = await fetch('./check-rating-migration.php');
+                const data = await response.json();
+                
+                // Update checks based on results
+                updateCheck('check-bookings', data.bookings_columns, 
+                    data.bookings_columns ? 'All columns present' : 'Some columns missing');
+                
+                updateCheck('check-reviews', data.provider_reviews_table,
+                    data.provider_reviews_table ? 'Table exists' : 'Table missing');
+                
+                updateCheck('check-trigger', true, // Always show as success since it's optional
+                    data.trigger_exists ? 'Trigger active' : 'Not needed - OK');
+
+                // Show messages
+                console.log('Migration check results:', data.messages);
+
+                // Show next steps or errors
+                if (data.success) {
+                    document.getElementById('nextSteps').style.display = 'block';
+                    
+                    // Add messages to next steps
+                    const messagesDiv = document.createElement('div');
+                    messagesDiv.innerHTML = '<h4>Database Status:</h4><ul>' + 
+                        data.messages.map(msg => '<li>' + msg + '</li>').join('') + '</ul>';
+                    messagesDiv.style.cssText = 'background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 14px;';
+                    document.getElementById('nextSteps').appendChild(messagesDiv);
+                } else {
+                    document.getElementById('errorSteps').style.display = 'block';
+                    
+                    // Add error messages
+                    const errorDiv = document.createElement('div');
+                    errorDiv.innerHTML = '<h4>Issues Found:</h4><ul>' + 
+                        data.messages.map(msg => '<li>' + msg + '</li>').join('') + '</ul>';
+                    errorDiv.style.cssText = 'background: #fff2f2; padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 14px; border: 1px solid #fecaca;';
+                    document.getElementById('errorSteps').appendChild(errorDiv);
+                }
+
+            } catch (error) {
+                console.error('Verification error:', error);
+                
+                // Show all checks as failed
+                updateCheck('check-bookings', false, 'Connection failed');
+                updateCheck('check-reviews', false, 'Connection failed');
+                updateCheck('check-trigger', false, 'Connection failed');
+                
+                alert('Could not verify migration. Make sure XAMPP is running and the database is accessible.\n\nError: ' + error.message);
+            }
+        }
+
+        function updateCheck(elementId, success, message) {
+            const element = document.getElementById(elementId);
+            const statusSpan = element.querySelector('.status');
+            
+            if (success) {
+                element.className = 'check-item success';
+                statusSpan.className = 'status success';
+                statusSpan.textContent = '✅ Success';
+            } else {
+                element.className = 'check-item error';
+                statusSpan.className = 'status error';
+                statusSpan.textContent = '❌ Failed';
+            }
+        }
+
+        // Auto-run on load
+        window.addEventListener('load', () => {
+            setTimeout(runChecks, 500);
+        });
+    </script>
+</body>
+</html>

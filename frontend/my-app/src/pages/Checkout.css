@@ -1,0 +1,290 @@
+.checkout-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Progress Steps */
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.progress-steps .step {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 3px solid #ddd;
+  font-weight: 600;
+  color: #888;
+}
+
+.progress-steps .step.completed {
+  border-color: #27ae60;
+  color: #27ae60;
+}
+
+.progress-steps .step.active {
+  border-color: #3498db;
+  color: #3498db;
+}
+
+/* Left: Booking Form */
+.checkout-left {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.checkout-left h2 {
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #f1f1f1;
+  padding-bottom: 8px;
+}
+
+/* Section Headings inside Form */
+.form-section {
+  margin-top: 25px;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2c3e50;
+  border-left: 4px solid #3498db;
+  padding-left: 10px;
+}
+
+.booking-form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* Inputs & Textareas */
+.booking-form input,
+.booking-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: #fafafa;
+}
+
+.booking-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.booking-form input:focus,
+.booking-form textarea:focus {
+  border-color: #3498db;
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* Highlight required invalid fields */
+.booking-form input:required:invalid,
+.booking-form textarea:required:invalid {
+  border-color: #e74c3c;
+}
+
+/* Label highlight when input is focused */
+.booking-form label:has(+ input:focus),
+.booking-form label:has(+ textarea:focus) {
+  color: #3498db;
+}
+
+/* Error message styling (instead of browser default) */
+.booking-form input:invalid:focus,
+.booking-form textarea:invalid:focus {
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+}
+
+/* Confirm Button */
+.btn-confirm {
+  margin-top: 25px;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #3498db, #2c82c9);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+.btn-confirm:hover {
+  background: linear-gradient(135deg, #2c82c9, #246fa8);
+  transform: translateY(-2px);
+}
+
+/* Right: Summary Card */
+.checkout-right {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  height: fit-content;
+  position: sticky;
+  top: 90px; /* adjust to avoid header overlap */
+  border: 1px solid #eee;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.checkout-right h2 {
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  color: #2c3e50;
+}
+
+.checkout-right h3 {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.checkout-right ul {
+  margin-top: 10px;
+  padding-left: 20px;
+  color: #555;
+}
+
+.checkout-right li {
+  margin-bottom: 8px;
+}
+
+.checkout-right .provider-logo {
+  width: 100px;
+  margin: 15px 0;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Total Price Highlight */
+.checkout-right h3:last-of-type {
+  margin-top: 25px;
+  font-size: 1.3rem;
+  color: #27ae60;
+  border-top: 2px dashed #eee;
+  padding-top: 15px;
+  text-align: right;
+}
+
+/* Back Button */
+.btn-back {
+  display: inline-block;
+  margin-bottom: 20px;
+  background: transparent;
+  border: none;
+  color: #3498db;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-back:hover {
+  color: #2c82c9;
+  text-decoration: underline;
+}
+
+/* Mobile Cart Toggle */
+.cart-toggle {
+  display: none;
+  width: 100%;
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.3s;
+}
+
+.cart-toggle:hover {
+  background: #2c82c9;
+}
+
+/* Collapsible content */
+.cart-content {
+  display: block;
+}
+
+/* File Inputs */
+.booking-form input[type="file"] {
+  padding: 6px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.booking-form input[type="file"]:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+@media (max-width: 768px) {
+  .cart-toggle {
+    display: block;
+  }
+
+  .cart-content {
+    display: none;
+  }
+
+  .cart-content.active {
+    display: block;
+    margin-top: 15px;
+  }
+}
+
+/* Tablet & Mobile Responsive */
+@media (max-width: 992px) {
+  .checkout-container {
+    grid-template-columns: 1fr; /* stack items */
+  }
+
+  .checkout-right {
+    position: relative; /* remove sticky */
+    top: auto;
+    margin-top: 20px; /* add spacing below form */
+  }
+}
+
+/* Extra Small Devices (phones) */
+@media (max-width: 576px) {
+  .checkout-left,
+  .checkout-right {
+    padding: 15px; /* tighter spacing */
+  }
+
+  .checkout-right h2 {
+    font-size: 1.2rem;
+  }
+
+  .checkout-right h3 {
+    font-size: 1rem;
+  }
+
+  .checkout-right .provider-logo {
+    width: 80px; /* smaller logo for mobile */
+  }
+}

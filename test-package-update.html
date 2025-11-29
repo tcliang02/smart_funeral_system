@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Package Update</title>
+</head>
+<body>
+    <h1>Testing Package Update</h1>
+    <div id="result"></div>
+
+    <script>
+        async function testUpdate() {
+            const testData = {
+                package_id: 23, // Use a real package ID from your database
+                name: 'Test Package',
+                description: 'Test description',
+                price: 2500,
+                capacity: 10,
+                duration_hours: 10,
+                location_type: 'both',
+                features: ['Feature 1', 'Feature 2']
+            };
+
+            try {
+                const response = await fetch('/smart_funeral_system/backend/managePackage.php', {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+
+                const text = await response.text();
+                
+                document.getElementById('result').innerHTML = `
+                    <h2>Response Status: ${response.status}</h2>
+                    <h3>Response Body:</h3>
+                    <pre>${text}</pre>
+                `;
+
+                console.log('Full response:', text);
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <h2 style="color: red;">Error:</h2>
+                    <pre>${error.message}</pre>
+                `;
+            }
+        }
+
+        // Auto-run on load
+        testUpdate();
+    </script>
+</body>
+</html>

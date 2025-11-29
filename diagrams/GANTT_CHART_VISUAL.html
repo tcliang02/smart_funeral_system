@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Funeral System - Gantt Chart (14-Week RAD Timeline)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .header {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            margin: 5px 0;
+        }
+        
+        .legend {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-box {
+            width: 30px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .gantt-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        
+        .gantt-table {
+            width: 100%;
+            min-width: 1400px;
+            border-collapse: collapse;
+        }
+        
+        .gantt-table th,
+        .gantt-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .gantt-table th {
+            background: #34495e;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .gantt-table .activity-name {
+            text-align: left;
+            background: #ecf0f1;
+            font-weight: 500;
+            min-width: 300px;
+        }
+        
+        .gantt-table .section-header {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+            text-align: left;
+        }
+        
+        .gantt-table .iteration-header {
+            background: #2ecc71;
+            color: white;
+            font-weight: bold;
+            text-align: left;
+        }
+        
+        .gantt-table .dfd-process {
+            background: #9b59b6;
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            font-style: italic;
+        }
+        
+        .bar {
+            height: 20px;
+            border-radius: 4px;
+            display: inline-block;
+            width: 80%;
+        }
+        
+        .bar-design {
+            background: #3498db;
+        }
+        
+        .bar-code {
+            background: #e74c3c;
+        }
+        
+        .bar-test {
+            background: #2ecc71;
+        }
+        
+        .bar-review {
+            background: #f39c12;
+        }
+        
+        .bar-documentation {
+            background: #95a5a6;
+        }
+        
+        .bar-multi {
+            background: linear-gradient(90deg, #3498db 0%, #e74c3c 50%, #2ecc71 100%);
+        }
+        
+        .week-cell {
+            min-width: 60px;
+        }
+        
+        .mapping-section {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .mapping-section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .mapping-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .mapping-table th,
+        .mapping-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .mapping-table th {
+            background: #34495e;
+            color: white;
+        }
+        
+        .mapping-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Smart Funeral Management System - Gantt Chart</h1>
+        <p><strong>Methodology:</strong> Rapid Application Development (RAD)</p>
+        <p><strong>Duration:</strong> 14 Weeks (5 Iterations)</p>
+        <p><strong>Total Tests:</strong> 159 Unit Tests + 10 Integration Tests + SUS Evaluation</p>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-box bar-design"></div>
+            <span>Design/Planning</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box bar-code"></div>
+            <span>Development/Coding</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box bar-test"></div>
+            <span>Testing</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box bar-review"></div>
+            <span>Review & Refinement</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box bar-documentation"></div>
+            <span>Documentation</span>
+        </div>
+    </div>
+
+    <div class="gantt-container">
+        <table class="gantt-table">
+            <thead>
+                <tr>
+                    <th style="min-width: 300px;">Project Activities</th>
+                    <th class="week-cell">W1</th>
+                    <th class="week-cell">W2</th>
+                    <th class="week-cell">W3</th>
+                    <th class="week-cell">W4</th>
+                    <th class="week-cell">W5</th>
+                    <th class="week-cell">W6</th>
+                    <th class="week-cell">W7</th>
+                    <th class="week-cell">W8</th>
+                    <th class="week-cell">W9</th>
+                    <th class="week-cell">W10</th>
+                    <th class="week-cell">W11</th>
+                    <th class="week-cell">W12</th>
+                    <th class="week-cell">W13</th>
+                    <th class="week-cell">W14</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Initial Planning -->
+                <tr>
+                    <td colspan="15" class="section-header">1. PROJECT INITIATION</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Selection of Project Title</td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                
+                <!-- Requirements Planning -->
+                <tr>
+                    <td colspan="15" class="section-header">2. REQUIREMENTS PLANNING PHASE</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Preliminary Research Work</td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Problem Identification</td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Literature Review Research</td>
+                    <td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                
+                <!-- User Design Phase -->
+                <tr>
+                    <td colspan="15" class="section-header">3. USER DESIGN PHASE</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design System Architecture</td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Initial User Interface</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Refined User Interface</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td><div class="bar bar-design"></div></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">System Documentation / Report</td>
+                    <td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                </tr>
+                
+                <!-- ITERATION 1 -->
+                <tr>
+                    <td colspan="15" class="iteration-header">ITERATION 1: Authentication & Foundation (Weeks 1-2)</td>
+                </tr>
+                <tr>
+                    <td colspan="15" class="dfd-process">DFD Process: Supporting Foundation for All Processes</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design User Registration & Login</td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Authentication</td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.1 Authentication (12 tests)</td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">🔍 Prototype Review (Week 2)</td>
+                    <td></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Fix Bugs & Refine (2 bugs)</td>
+                    <td></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                
+                <!-- ITERATION 2 -->
+                <tr>
+                    <td colspan="15" class="iteration-header">ITERATION 2: Memorial & Tribute System (Weeks 3-5)</td>
+                </tr>
+                <tr>
+                    <td colspan="15" class="dfd-process">DFD Process 1.0: Manage Memorial Tributes</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Memorial & Tribute Module</td>
+                    <td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Memorial Features</td>
+                    <td></td><td></td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.8 Tribute Mgmt (14 tests)</td>
+                    <td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="15" class="dfd-process">DFD Process 2.0: Manage Tribute Wall & Interactions</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Virtual Offerings Module</td>
+                    <td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Virtual Offerings</td>
+                    <td></td><td></td><td></td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.6 Virtual Offerings (5 tests)</td>
+                    <td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Guest RSVP Module</td>
+                    <td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test RSVP Function</td>
+                    <td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.7 Guest RSVP (6 tests)</td>
+                    <td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">🔍 Prototype Review (Week 5)</td>
+                    <td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Fix Bugs & Refine (4 bugs)</td>
+                    <td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                
+                <!-- ITERATION 3 -->
+                <tr>
+                    <td colspan="15" class="iteration-header">ITERATION 3: Booking & Commerce System (Weeks 6-9)</td>
+                </tr>
+                <tr>
+                    <td colspan="15" class="dfd-process">DFD Process 4.0: Manage Service Packages & Features</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Package Management</td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Package Management</td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.2 Package Mgmt (10 tests)</td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="15" class="dfd-process">DFD Process 6.0: Manage Funeral Service Bookings</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Booking Module</td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Booking Flow</td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.3 Booking Mgmt (36 tests)</td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="15" class="dfd-process">DFD Process 5.0: Manage Add-on Catalog & Provider Add-ons</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Add-ons Module</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Add-ons Selection</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.4 Add-on Mgmt (8 tests)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td colspan="15" class="dfd-process">DFD Process 7.0: Manage Payments & Refunds</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Payment & Donation Module</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Payment Integration</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.5 Payment (6 tests)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">🔍 Prototype Review (Week 8)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Fix Bugs & Refine (8 bugs)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                
+                <!-- ITERATION 4 -->
+                <tr>
+                    <td colspan="15" class="iteration-header">ITERATION 4: Provider Management System (Weeks 10-12)</td>
+                </tr>
+                <tr>
+                    <td colspan="15" class="dfd-process">DFD Process 3.0: Manage Service Providers & Reviews</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Provider Booking Mgmt</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Provider Bookings</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.11 Provider Bookings (15 tests)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Availability Calendar</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Availability</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.12 Availability (10 tests)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Dashboard Analytics</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Dashboard</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.13 Dashboard (11 tests)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Reviews & Ratings</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Reviews</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-code"></div></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.10 Reviews (8 tests)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design Profile Settings</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test Profile Settings</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.14 Profile (10 tests)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">🔍 Prototype Review (Week 11)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td></td><td></td><td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Fix Bugs & Refine (6 bugs)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td></td><td></td>
+                </tr>
+                
+                <!-- ITERATION 5 -->
+                <tr>
+                    <td colspan="15" class="iteration-header">ITERATION 5: AI Enhancement & Final Testing (Weeks 13-14)</td>
+                </tr>
+                <tr>
+                    <td colspan="15" class="dfd-process">DFD Process 8.0: Manage AI Voice Memorial</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design AI Voice Memorial</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test AI Voice</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">✅ Test: 6.2.9 AI Support (7 tests)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Design AI Chatbot</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-design"></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Code & Test AI Chatbot</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-multi"></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">🔍 Prototype Review (Week 13)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Fix AI Responses (2 bugs)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-review"></div></td>
+                    <td></td>
+                </tr>
+                
+                <!-- Final Testing -->
+                <tr>
+                    <td colspan="15" class="section-header">INTEGRATION & SYSTEM TESTING</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Integration Testing (10 scenarios)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Live/Demo Environment Testing</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                    <td><div class="bar bar-test"></div></td>
+                </tr>
+                
+                <!-- SUS Testing -->
+                <tr>
+                    <td colspan="15" class="section-header">SYSTEM USABILITY SCALE (SUS) EVALUATION</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">SUS Testing (20 participants)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Analyze SUS Results (Score: 78.5)</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-test"></div></td>
+                </tr>
+                
+                <!-- Final Documentation -->
+                <tr>
+                    <td colspan="15" class="section-header">FINAL DOCUMENTATION & SUBMISSION</td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Prepare Final Documentation</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                </tr>
+                <tr>
+                    <td class="activity-name">Submit Final Report</td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                    <td><div class="bar bar-documentation"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mapping-section">
+        <h2>📋 DFD Process to Testing Mapping</h2>
+        <table class="mapping-table">
+            <thead>
+                <tr>
+                    <th>DFD Process</th>
+                    <th>Description</th>
+                    <th>Iteration</th>
+                    <th>Chapter 6 Tests</th>
+                    <th>Test Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Foundation</strong></td>
+                    <td>User Authentication & Role Management</td>
+                    <td>Iteration 1 (Weeks 1-2)</td>
+                    <td>6.2.1</td>
+                    <td>12 tests</td>
+                </tr>
+                <tr>
+                    <td><strong>1.0</strong></td>
+                    <td>Manage Memorial Tributes</td>
+                    <td>Iteration 2 (Weeks 3-5)</td>
+                    <td>6.2.8</td>
+                    <td>14 tests</td>
+                </tr>
+                <tr>
+                    <td><strong>2.0</strong></td>
+                    <td>Manage Tribute Wall & Interactions</td>
+                    <td>Iteration 2 (Weeks 3-5)</td>
+                    <td>6.2.6, 6.2.7</td>
+                    <td>11 tests</td>
+                </tr>
+                <tr>
+                    <td><strong>4.0</strong></td>
+                    <td>Manage Service Packages & Features</td>
+                    <td>Iteration 3 (Weeks 6-9)</td>
+                    <td>6.2.2</td>
+                    <td>10 tests</td>
+                </tr>
+                <tr>
+                    <td><strong>6.0</strong></td>
+                    <td>Manage Funeral Service Bookings</td>
+                    <td>Iteration 3 (Weeks 6-9)</td>
+                    <td>6.2.3</td>
+                    <td>36 tests</td>
+                </tr>
+                <tr>
+                    <td><strong>5.0</strong></td>
+                    <td>Manage Add-on Catalog & Provider Add-ons</td>
+                    <td>Iteration 3 & 4 (Weeks 6-12)</td>
+                    <td>6.2.4</td>
+                    <td>8 tests</td>
+                </tr>
+                <tr>
+                    <td><strong>7.0</strong></td>
+                    <td>Manage Payments & Refunds</td>
+                    <td>Iteration 3 (Weeks 6-9)</td>
+                    <td>6.2.5</td>
+                    <td>6 tests</td>
+                </tr>
+                <tr>
+                    <td><strong>3.0</strong></td>
+                    <td>Manage Service Providers & Reviews</td>
+                    <td>Iteration 4 (Weeks 10-12)</td>
+                    <td>6.2.10-6.2.14</td>
+                    <td>62 tests</td>
+                </tr>
+                <tr>
+                    <td><strong>8.0</strong></td>
+                    <td>Manage AI Voice Memorial</td>
+                    <td>Iteration 5 (Weeks 13-14)</td>
+                    <td>6.2.9</td>
+                    <td>7 tests</td>
+                </tr>
+                <tr style="background: #e8f5e9; font-weight: bold;">
+                    <td colspan="4"><strong>TOTAL</strong></td>
+                    <td><strong>166 tests</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="background: white; padding: 20px; margin-top: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h2 style="color: #2c3e50; margin-bottom: 15px;">✅ Key RAD Principles Applied</h2>
+        <ul style="line-height: 2; color: #555;">
+            <li>✅ <strong>Iterative Development:</strong> 5 iterations, each building on previous work</li>
+            <li>✅ <strong>Continuous Testing:</strong> Testing happens within each iteration (not at end)</li>
+            <li>✅ <strong>Prototype Reviews:</strong> User feedback at end of each iteration (Weeks 2, 5, 8, 11, 13)</li>
+            <li>✅ <strong>Immediate Refinement:</strong> Bugs fixed within same iteration (zero technical debt)</li>
+            <li>✅ <strong>DFD Alignment:</strong> All 8 Level 1 DFD processes mapped to iterations</li>
+            <li>✅ <strong>SUS Evaluation:</strong> 20 participants, 10 questions, Score 78.5 (Above Average)</li>
+        </ul>
+    </div>
+</body>
+</html>

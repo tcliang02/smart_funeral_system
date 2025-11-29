@@ -1,0 +1,180 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(120deg, #f6f9fc, #e4ebf3);
+}
+
+.register-card {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  width: 400px;
+  text-align: center;
+}
+/* ===============================
+   Golden-Themed Register Page
+   =============================== */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(120deg, #fdf6e3, #f5e6c5);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.register-card {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.register-card h1 {
+  font-size: 1.8rem;
+  color: #a17f2a;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* ===============================
+   Form Inputs
+   =============================== */
+.register-form input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.register-form input:focus {
+  border-color: #d4ac0d;
+  box-shadow: 0 0 6px rgba(212, 172, 13, 0.4);
+}
+
+/* ===============================
+   Buttons
+   =============================== */
+.register-form button {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #f1c40f, #d68910);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.register-form button:hover {
+  background: linear-gradient(135deg, #d4ac0d, #b9770e);
+}
+
+/* ===============================
+   Error + Link
+   =============================== */
+.error {
+  color: #c0392b;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.login-link {
+  margin-top: 1.2rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.login-link span {
+  color: #d68910;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.login-link span:hover {
+  text-decoration: underline;
+}
+
+.register-card h1 {
+  font-size: 1.8rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.register-form input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.register-form input:focus {
+  border-color: #4a90e2;
+}
+
+.register-form button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-form button:hover {
+  background-color: #357ab8;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.login-link {
+  margin-top: 1rem;
+  color: #444;
+}
+
+.login-link span {
+  color: #4a90e2;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.login-link span:hover {
+  text-decoration: underline;
+}

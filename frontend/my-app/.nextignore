@@ -1,0 +1,4 @@
+# Ignore src/pages directory from Next.js routing
+# We're using App Router (app/) and React Router for client-side routing
+src/pages/
+

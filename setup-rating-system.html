@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating System Migration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+        }
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .info-box ul {
+            margin-left: 20px;
+            color: #555;
+        }
+        .info-box li {
+            margin: 8px 0;
+        }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            display: none;
+        }
+        .result.success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+        }
+        .result.error {
+            background: #f8d7da;
+            border: 2px solid #dc3545;
+            color: #721c24;
+        }
+        .result h3 {
+            margin-bottom: 10px;
+        }
+        .result pre {
+            background: rgba(0,0,0,0.05);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⭐ Rating System Setup</h1>
+        <p class="subtitle">One-click database migration for the rating feature</p>
+
+        <div class="info-box">
+            <h3>📋 What will be created:</h3>
+            <ul>
+                <li><strong>4 new columns</strong> in bookings table</li>
+                <li><strong>provider_reviews</strong> table for ratings</li>
+                <li><strong>Trigger</strong> for automatic deadline calculation</li>
+                <li><strong>Update</strong> existing completed bookings</li>
+            </ul>
+        </div>
+
+        <button id="migrateBtn" onclick="runMigration()">
+            🚀 Run Migration
+        </button>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Running migration...</p>
+        </div>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        async function runMigration() {
+            const btn = document.getElementById('migrateBtn');
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+
+            // Disable button and show loading
+            btn.disabled = true;
+            loading.style.display = 'block';
+            result.style.display = 'none';
+
+            try {
+                const response = await fetch('/backend/migrateRatingSystem.php');
+                const data = await response.json();
+
+                loading.style.display = 'none';
+                result.style.display = 'block';
+
+                if (data.success) {
+                    result.className = 'result success';
+                    result.innerHTML = `
+                        <h3>✅ Migration Successful!</h3>
+                        <p>${data.message}</p>
+                        ${data.changes ? `
+                            <pre>${JSON.stringify(data.changes, null, 2)}</pre>
+                        ` : ''}
+                        ${data.already_migrated ? `
+                            <p style="margin-top: 10px;"><strong>Note:</strong> Database was already migrated. No changes made.</p>
+                        ` : `
+                            <p style="margin-top: 10px;"><strong>Next step:</strong> Your rating system is ready! Refresh your application to use it.</p>
+                        `}
+                    `;
+                } else {
+                    result.className = 'result error';
+                    result.innerHTML = `
+                        <h3>❌ Migration Failed</h3>
+                        <p>${data.message}</p>
+                        <p style="margin-top: 10px;">Please check your database connection and try again.</p>
+                    `;
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                loading.style.display = 'none';
+                result.style.display = 'block';
+                result.className = 'result error';
+                result.innerHTML = `
+                    <h3>❌ Error</h3>
+                    <p>Failed to connect to migration script: ${error.message}</p>
+                    <p style="margin-top: 10px;">Make sure your backend server is running.</p>
+                `;
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

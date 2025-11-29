@@ -1,0 +1,161 @@
+/* ===============================
+   Golden-Themed Login Page
+   =============================== */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(120deg, #fdf6e3, #f5e6c5);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.login-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 380px;
+  text-align: center;
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-card h1 {
+  color: #a17f2a;
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+}
+
+.subtitle {
+  color: #777;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* ===============================
+   Role Selector
+   =============================== */
+.role-selector {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.role-selector button {
+  flex: 1;
+  margin: 0 0.3rem;
+  padding: 0.7rem;
+  border: none;
+  background: #f9f5e7;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #7a6a2b;
+}
+
+.role-selector button.active {
+  background: linear-gradient(135deg, #f1c40f, #d68910);
+  color: white;
+  transform: scale(1.05);
+}
+
+.role-selector button:hover {
+  background: linear-gradient(135deg, #f1c40f, #d68910);
+  color: white;
+}
+
+/* ===============================
+   Form Inputs
+   =============================== */
+.login-form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.login-form input:focus {
+  border-color: #d4ac0d;
+  box-shadow: 0 0 6px rgba(212, 172, 13, 0.4);
+}
+
+/* ===============================
+   Buttons
+   =============================== */
+.login-form button {
+  width: 100%;
+  background: linear-gradient(135deg, #f1c40f, #d68910);
+  color: white;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-form button:hover {
+  background: linear-gradient(135deg, #d4ac0d, #b9770e);
+}
+
+/* ===============================
+   Guest Section
+   =============================== */
+.guest-section {
+  background: #fef9e7;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  border: 1px solid #f5cba7;
+}
+
+.guest-section button {
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #f1c40f, #d68910);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.guest-section button:hover {
+  background: linear-gradient(135deg, #d4ac0d, #b9770e);
+}
+
+/* ===============================
+   Error + Links
+   =============================== */
+.error {
+  color: #c0392b;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.register-link {
+  margin-top: 1.2rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.register-link span {
+  color: #d68910;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.register-link span:hover {
+  text-decoration: underline;
+}

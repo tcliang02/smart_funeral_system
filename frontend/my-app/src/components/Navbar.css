@@ -1,0 +1,180 @@
+/* =========================
+   Base styles (desktop first)
+   ========================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #2c3e50;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* ✅ Fix: ensure logo link stays white and not purple */
+.logo a {
+  color: white;
+  text-decoration: none;
+}
+
+.logo a:visited {
+  color: white;
+}
+
+.logo a:hover {
+  color: #f39c12;
+  transition: color 0.3s ease;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ fix link color behavior */
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Hover underline animation */
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #f39c12;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+  width: 100%;
+}
+
+/* ✅ Active link fix: stays gold and underlined */
+.nav-links li a.active,
+.nav-links li a:focus,
+.nav-links li a:visited.active {
+  color: #f39c12 !important;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* =========================
+   Hamburger button
+   ========================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Transform into "X" when open */
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 7px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* =========================
+   Auth buttons (Login/Logout)
+   ========================= */
+.auth-btn {
+  background-color: #f39c12;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+
+.auth-btn:hover {
+  background-color: #e67e22;
+}
+
+.auth-btn.logout {
+  background-color: #c0392b;
+}
+
+.auth-btn.logout:hover {
+  background-color: #a93226;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.username {
+  color: #ecf0f1;
+  font-weight: 500;
+}
+
+/* =========================
+   Mobile styles
+   ========================= */
+@media (max-width: 768px) {
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: absolute;
+    top: 70px;
+    right: -250px;
+    background-color: #2c3e50;
+    padding: 20px;
+    border-radius: 10px 0 0 10px;
+    width: 200px;
+    transition: right 0.3s ease-in-out;
+  }
+
+  .nav-links.open {
+    right: 40px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

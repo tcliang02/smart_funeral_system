@@ -1,0 +1,151 @@
+.thankyou-container {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #f0f9ff, #e6f7f1);
+}
+
+.thankyou-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  text-align: center;
+  animation: fadeInUp 0.6s ease;
+  width: 100%;
+  max-width: 600px;
+}
+
+.thankyou-icon {
+  font-size: 64px;
+  color: #2d7d46;
+  margin-bottom: 1rem;
+}
+
+.thankyou-card h1 {
+  color: #2d7d46;
+  margin-bottom: 0.5rem;
+}
+
+.thankyou-card p {
+  font-size: 18px;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.receipt {
+  text-align: left;
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid #eee;
+}
+
+.receipt h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.receipt ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.receipt li {
+  margin: 8px 0;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.total-highlight {
+  background: #e6f7f1;
+  color: #1a6a4f;
+  font-weight: bold;
+}
+
+.thankyou-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn-home, .btn-print {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-home {
+  background: linear-gradient(135deg, #0066cc, #004c99);
+  color: #fff;
+}
+
+.btn-home:hover {
+  background: linear-gradient(135deg, #004c99, #003366);
+}
+
+.btn-print {
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.btn-print:hover {
+  background: #f5f5f5;
+}
+
+.btn-orders {
+  background: #2d7d46;
+  color: #fff;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-orders:hover {
+  background: #256637;
+}
+
+
+.next-steps {
+  background: #f0f9ff;
+  border-left: 4px solid #0066cc;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0 2rem 0;
+  border-radius: 8px;
+  text-align: left;
+  color: #333;
+}
+
+.next-steps p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+  text-align: justify;  
+  
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

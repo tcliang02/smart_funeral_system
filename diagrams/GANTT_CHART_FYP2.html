@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Funeral System - Gantt Chart FYP2 (14 Weeks)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .info {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+        
+        th, td {
+            border: 1px solid #333;
+            padding: 6px 4px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #666;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .header-row {
+            background-color: #666;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .activity-cell {
+            text-align: left;
+            font-weight: normal;
+            background-color: #f9f9f9;
+            padding-left: 8px;
+        }
+        
+        .section-header {
+            background-color: #333;
+            color: white;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 8px;
+        }
+        
+        .dfd-label {
+            font-style: italic;
+            color: #666;
+            font-size: 10px;
+        }
+        
+        .week-cell {
+            width: 40px;
+            min-width: 40px;
+        }
+        
+        .bar-cell {
+            background-color: #00bcd4;
+            padding: 0;
+        }
+        
+        .bar-design {
+            background-color: #00bcd4;
+        }
+        
+        .bar-code {
+            background-color: #f44336;
+        }
+        
+        .bar-test {
+            background-color: #4caf50;
+        }
+        
+        .empty-cell {
+            background-color: white;
+        }
+        
+        .legend {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 11px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .legend-box {
+            width: 20px;
+            height: 12px;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Smart Funeral Management System - Project Gantt Chart (FYP2)</h1>
+        <div class="info">
+            <strong>Methodology:</strong> Rapid Application Development (RAD) | 
+            <strong>Duration:</strong> 14 Weeks | 
+            <strong>Testing:</strong> Continuous (RAD Approach)
+        </div>
+        
+        <table>
+            <thead>
+                <tr class="header-row">
+                    <th rowspan="2" style="width: 50px;">No</th>
+                    <th rowspan="2" style="width: 300px;">Deliverables / Project Activities (FYP2)</th>
+                    <th colspan="14">Week</th>
+                </tr>
+                <tr class="header-row">
+                    <th class="week-cell">1</th>
+                    <th class="week-cell">2</th>
+                    <th class="week-cell">3</th>
+                    <th class="week-cell">4</th>
+                    <th class="week-cell">5</th>
+                    <th class="week-cell">6</th>
+                    <th class="week-cell">7</th>
+                    <th class="week-cell">8</th>
+                    <th class="week-cell">9</th>
+                    <th class="week-cell">10</th>
+                    <th class="week-cell">11</th>
+                    <th class="week-cell">12</th>
+                    <th class="week-cell">13</th>
+                    <th class="week-cell">14</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ITERATION 1 -->
+                <tr>
+                    <td colspan="16" class="section-header">ITERATION 1: Authentication & Foundation (Weeks 1-2)</td>
+                </tr>
+                <tr>
+                    <td colspan="16" class="activity-cell"><span class="dfd-label">DFD Process: Supporting foundation for all processes</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design User Registration & Login Module</td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "User Registration & Login" function</td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                
+                <!-- ITERATION 2 -->
+                <tr>
+                    <td colspan="16" class="section-header">ITERATION 2: Memorial & Tribute System (Weeks 3-5)</td>
+                </tr>
+                <tr>
+                    <td colspan="16" class="activity-cell"><span class="dfd-label">DFD Process 1.0: Manage Memorial Tributes</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Memorial & Tribute Page Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "Memorial & Tribute Page" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td colspan="16" class="activity-cell"><span class="dfd-label">DFD Process 2.0: Manage Tribute Wall & Interactions</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Virtual Offerings Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "Virtual Offerings" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Guest RSVP Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "RSVP" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                
+                <!-- ITERATION 3 -->
+                <tr>
+                    <td colspan="16" class="section-header">ITERATION 3: Booking & Commerce System (Weeks 6-9)</td>
+                </tr>
+                <tr>
+                    <td colspan="16" class="activity-cell"><span class="dfd-label">DFD Process 4.0: Manage Service Packages & Features</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Package Management Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "Package Management" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td colspan="16" class="activity-cell"><span class="dfd-label">DFD Process 6.0: Manage Funeral Service Bookings</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Funeral Service Booking Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "Funeral Service Booking" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td colspan="16" class="activity-cell"><span class="dfd-label">DFD Process 5.0: Manage Add-on Catalog & Provider Add-ons</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Add-ons Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "Add-ons Selection" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td colspan="16" class="activity-cell"><span class="dfd-label">DFD Process 7.0: Manage Payments & Refunds</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Payment & Donation Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "Payment & Donation" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                
+                <!-- ITERATION 4 -->
+                <tr>
+                    <td colspan="16" class="section-header">ITERATION 4: Provider Management System (Weeks 10-12)</td>
+                </tr>
+                <tr>
+                    <td colspan="16" class="activity-cell"><span class="dfd-label">DFD Process 3.0: Manage Service Providers & Reviews</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Provider Booking Management Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "Provider Booking" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Provider Availability Calendar</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "Availability Calendar" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Provider Dashboard Analytics</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "Dashboard Analytics" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Reviews & Ratings Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "Reviews & Ratings" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design Profile Settings Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "Profile Settings" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                
+                <!-- ITERATION 5 -->
+                <tr>
+                    <td colspan="16" class="section-header">ITERATION 5: AI Enhancement & Final Testing (Weeks 13-14)</td>
+                </tr>
+                <tr>
+                    <td colspan="16" class="activity-cell"><span class="dfd-label">DFD Process 8.0: Manage AI Voice Memorial</span></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design AI Voice Memorialization Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "AI Voice Memorialization" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Design AI Chatbot (LangChain + OpenAI) Module</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-design"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Code and test "AI Chatbot" function</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-code"></td>
+                    <td class="empty-cell"></td>
+                </tr>
+                
+                <!-- TESTING PHASE -->
+                <tr>
+                    <td colspan="16" class="section-header">Prototype Development Phase</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Test run full system and simulate user interactions</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-test"></td>
+                    <td class="bar-cell bar-test"></td>
+                    <td class="bar-cell bar-test"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Test system in live/demo environment</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-test"></td>
+                    <td class="bar-cell bar-test"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Prepare final documentation and user manual</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-test"></td>
+                    <td class="bar-cell bar-test"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td class="activity-cell">Submit final project report and present</td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="empty-cell"></td>
+                    <td class="bar-cell bar-test"></td>
+                    <td class="bar-cell bar-test"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box bar-design"></div>
+                <span>Design Phase (Cyan)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box bar-code"></div>
+                <span>Development Phase (Red)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box bar-test"></div>
+                <span>Testing Phase (Green)</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

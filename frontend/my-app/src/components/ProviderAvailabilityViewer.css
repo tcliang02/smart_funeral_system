@@ -1,0 +1,73 @@
+/* Family member availability viewer specific styles */
+.family-view .calendar-day {
+  cursor: pointer;
+}
+
+.family-view .calendar-day.unavailable {
+  background-color: #fee2e2;
+  color: #991b1b;
+  cursor: not-allowed;
+}
+
+.family-view .calendar-day:not(.unavailable):not(.past-date):hover {
+  background-color: #d1fae5;
+  border-color: #10b981;
+}
+
+.family-view .calendar-day.past-date {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.family-view .calendar-day.selected {
+  background-color: #34d399;
+  color: white;
+  border-color: #10b981;
+  font-weight: bold;
+}
+
+.selected-date-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.book-date-button {
+  background-color: #10b981;
+  color: white;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.book-date-button:hover {
+  background-color: #059669;
+}
+
+/* Legend styles for family view */
+.family-view .calendar-legend {
+  margin-top: 1.5rem;
+}
+
+.family-view .legend-color.available {
+  background-color: #d1fae5;
+  border-color: #10b981;
+}
+
+/* Unavailable dates marker styling */
+.unavailable-marker {
+  font-size: 0.75rem;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #ef4444;
+}

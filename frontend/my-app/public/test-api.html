@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>Testing getVoiceMemorials.php</h1>
+    <pre id="output"></pre>
+    
+    <script>
+        fetch('/backend/getVoiceMemorials.php')
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+                
+                // Check photo field
+                if (data.voice_memorials && data.voice_memorials[0]) {
+                    const first = data.voice_memorials[0];
+                    console.log('First memorial photo:', first.photo);
+                    console.log('First memorial profile_picture:', first.profile_picture);
+                    
+                    // Show the photo
+                    if (first.photo) {
+                        const img = document.createElement('img');
+                        img.src = first.photo;
+                        img.style.width = '200px';
+                        img.style.height = '200px';
+                        img.style.borderRadius = '50%';
+                        img.onerror = function() {
+                            alert('IMAGE FAILED TO LOAD: ' + first.photo);
+                        };
+                        document.body.appendChild(img);
+                    }
+                }
+            });
+    </script>
+</body>
+</html>

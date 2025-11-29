@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Token Refresh Utility</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .success {
+            background: #c8e6c9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .error {
+            background: #ffcdd2;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1976D2;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔑 Token Refresh Utility</h1>
+        
+        <div class="info">
+            <strong>Purpose:</strong> This utility will generate a fresh JWT token for user_id 16 (provider1) with the correct structure.
+        </div>
+
+        <div id="currentTokenInfo"></div>
+        
+        <button onclick="refreshToken()">🔄 Generate Fresh Token</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Display current token info
+        function displayCurrentToken() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const token = localStorage.getItem('token');
+            
+            let html = '<div class="info"><h3>Current localStorage Data:</h3>';
+            html += '<strong>User:</strong><pre>' + JSON.stringify(user, null, 2) + '</pre>';
+            
+            if (token) {
+                try {
+                    // Decode JWT token
+                    const parts = token.split('.');
+                    const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
+                    html += '<strong>Token Payload:</strong><pre>' + JSON.stringify(payload, null, 2) + '</pre>';
+                    
+                    const now = Math.floor(Date.now() / 1000);
+                    if (payload.exp && payload.exp < now) {
+                        html += '<div class="error">⚠️ Token has EXPIRED!</div>';
+                    }
+                } catch (e) {
+                    html += '<div class="error">Error decoding token: ' + e.message + '</div>';
+                }
+            } else {
+                html += '<div class="error">No token found in localStorage</div>';
+            }
+            
+            html += '</div>';
+            document.getElementById('currentTokenInfo').innerHTML = html;
+        }
+
+        async function refreshToken() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="info">Generating new token...</div>';
+            
+            try {
+                // Call backend to generate new token for user 16
+                const response = await fetch('/smart_funeral_system/backend/refreshToken.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_id: 16
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Update localStorage with new token and user data
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    
+                    let html = '<div class="success">';
+                    html += '<h3>✅ Token Refreshed Successfully!</h3>';
+                    html += '<strong>New Token:</strong><pre>' + data.token.substring(0, 50) + '...</pre>';
+                    html += '<strong>New User Data:</strong><pre>' + JSON.stringify(data.user, null, 2) + '</pre>';
+                    html += '<p><strong>Next Step:</strong> Go to your dashboard and try creating/updating a package. It should work now!</p>';
+                    html += '</div>';
+                    
+                    resultDiv.innerHTML = html;
+                    
+                    // Refresh the display
+                    setTimeout(displayCurrentToken, 500);
+                } else {
+                    resultDiv.innerHTML = '<div class="error">Error: ' + data.message + '</div>';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="error">Error: ' + error.message + '</div>';
+            }
+        }
+        
+        // Display current token on load
+        displayCurrentToken();
+    </script>
+</body>
+</html>

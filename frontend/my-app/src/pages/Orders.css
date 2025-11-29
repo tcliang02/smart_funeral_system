@@ -1,0 +1,119 @@
+.orders-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.orders-container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.empty-msg {
+  text-align: center;
+  font-size: 18px;
+  color: #777;
+  padding: 2rem 0;
+}
+
+.order-list {
+  list-style: none;
+  padding: 0;
+}
+
+.order-card {
+  background: #fff;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.order-card:hover {
+  transform: translateY(-3px);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-card h3 {
+  margin: 0;
+  color: #0066cc;
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.status-badge.confirmed {
+  background: #2d7d46;
+}
+
+.status-badge.pending {
+  background: #f1c40f;
+  color: #333;
+}
+
+.status-badge.cancelled {
+  background: #e74c3c;
+}
+
+.order-card p {
+  margin: 8px 0;
+  font-size: 15px;
+}
+
+.order-docs {
+  margin-top: 1rem;
+  background: #f9f9f9;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+}
+
+.order-docs ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.order-docs li {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.order-details, .order-addons, .order-docs {
+  margin-top: 1rem;
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.order-details h4,
+.order-addons h4,
+.order-docs h4 {
+  margin: 0 0 0.5rem;
+  color: #444;
+}
+
+.order-details ul,
+.order-addons ul,
+.order-docs ul {
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.order-details li,
+.order-addons li,
+.order-docs li {
+  margin: 4px 0;
+  font-size: 14px;
+}

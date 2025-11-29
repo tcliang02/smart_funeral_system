@@ -1,0 +1,13 @@
+'use client';
+
+import ProtectedRouteNext from '../../../components/ProtectedRouteNext';
+import Orders from '../../../pages/Orders';
+
+export default function OrdersPage() {
+  return (
+    <ProtectedRouteNext allowedRoles={['family']}>
+      <Orders />
+    </ProtectedRouteNext>
+  );
+}
+

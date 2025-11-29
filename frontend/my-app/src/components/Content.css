@@ -1,0 +1,11 @@
+.content {
+  padding: 2rem;
+  text-align: center;
+  min-height: calc(100vh - 140px); /* full height minus header/footer */
+}
+
+.btn {
+  padding: 10px 20px;
+  margin-top: 1rem;
+  cursor: pointer;
+}

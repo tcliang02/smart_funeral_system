@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Setup Tribute System Database</title>
+    <style>
+        body { font-family: Arial; max-width: 900px; margin: 50px auto; padding: 20px; }
+        .success { background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .info { background: #d1ecf1; color: #0c5460; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        button { background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>🏗️ Setup Tribute System Database</h1>
+    
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $conn = new mysqli('localhost', 'root', '', 'smart_funeral_system');
+        
+        if ($conn->connect_error) {
+            echo '<div class="error">❌ Connection failed: ' . $conn->connect_error . '</div>';
+            exit;
+        }
+        
+        // Disable foreign key checks
+        $conn->query("SET FOREIGN_KEY_CHECKS = 0");
+        
+        // Drop existing tables
+        echo '<div class="info">🗑️ Dropping existing tribute tables...</div>';
+        $tables = ['tribute_rsvp', 'tribute_candles', 'tribute_photos', 'tribute_messages', 'tributes'];
+        foreach ($tables as $table) {
+            $conn->query("DROP TABLE IF EXISTS $table");
+            echo "<div class='success'>✅ Dropped $table</div>";
+        }
+        
+        // Create tributes table
+        echo '<div class="info">📦 Creating tributes table...</div>';
+        $sql = "CREATE TABLE tributes (
+            id INT(11) AUTO_INCREMENT PRIMARY KEY,
+            booking_id INT(11) NULL,
+            creator_user_id INT(11) NOT NULL,
+            deceased_name VARCHAR(255) NOT NULL,
+            date_of_birth DATE NOT NULL,
+            date_of_death DATE NOT NULL,
+            location_of_birth VARCHAR(255),
+            portrait_photo VARCHAR(500),
+            life_story TEXT,
+            is_public TINYINT(1) DEFAULT 1,
+            allow_messages TINYINT(1) DEFAULT 1,
+            allow_photos TINYINT(1) DEFAULT 1,
+            allow_candles TINYINT(1) DEFAULT 1,
+            moderate_messages TINYINT(1) DEFAULT 0,
+            donation_items JSON,
+            account_holder_name VARCHAR(255),
+            bank_name VARCHAR(100),
+            account_number VARCHAR(50),
+            bank_qr_code VARCHAR(500),
+            grave_invite_message TEXT,
+            grave_location_name VARCHAR(255),
+            grave_address TEXT,
+            grave_datetime DATETIME,
+            map_link VARCHAR(500),
+            virtual_link VARCHAR(500),
+            enable_rsvp TINYINT(1) DEFAULT 0,
+            rsvp_collect_name TINYINT(1) DEFAULT 0,
+            rsvp_collect_phone TINYINT(1) DEFAULT 0,
+            rsvp_max_guests INT(11),
+            view_count INT(11) DEFAULT 0,
+            flower_count INT(11) DEFAULT 0,
+            candle_count INT(11) DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        
+        if ($conn->query($sql)) {
+            echo '<div class="success">✅ Created tributes table</div>';
+        } else {
+            echo '<div class="error">❌ Error creating tributes: ' . $conn->error . '</div>';
+        }
+        
+        // Create tribute_messages table
+        echo '<div class="info">📦 Creating tribute_messages table...</div>';
+        $sql = "CREATE TABLE tribute_messages (
+            id INT(11) AUTO_INCREMENT PRIMARY KEY,
+            tribute_id INT(11) NOT NULL,
+            user_id INT(11) NULL,
+            guest_name VARCHAR(255),
+            guest_email VARCHAR(255),
+            message TEXT NOT NULL,
+            is_approved TINYINT(1) DEFAULT 1,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        
+        if ($conn->query($sql)) {
+            echo '<div class="success">✅ Created tribute_messages table</div>';
+        } else {
+            echo '<div class="error">❌ Error creating tribute_messages: ' . $conn->error . '</div>';
+        }
+        
+        // Create tribute_photos table
+        echo '<div class="info">📦 Creating tribute_photos table...</div>';
+        $sql = "CREATE TABLE tribute_photos (
+            id INT(11) AUTO_INCREMENT PRIMARY KEY,
+            tribute_id INT(11) NOT NULL,
+            uploader_user_id INT(11) NULL,
+            uploader_name VARCHAR(255),
+            photo_url VARCHAR(500) NOT NULL,
+            photo_description TEXT,
+            is_approved TINYINT(1) DEFAULT 1,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        
+        if ($conn->query($sql)) {
+            echo '<div class="success">✅ Created tribute_photos table</div>';
+        } else {
+            echo '<div class="error">❌ Error creating tribute_photos: ' . $conn->error . '</div>';
+        }
+        
+        // Create tribute_candles table
+        echo '<div class="info">📦 Creating tribute_candles table...</div>';
+        $sql = "CREATE TABLE tribute_candles (
+            id INT(11) AUTO_INCREMENT PRIMARY KEY,
+            tribute_id INT(11) NOT NULL,
+            lighter_user_id INT(11) NULL,
+            lighter_name VARCHAR(255),
+            candle_message TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        
+        if ($conn->query($sql)) {
+            echo '<div class="success">✅ Created tribute_candles table</div>';
+        } else {
+            echo '<div class="error">❌ Error creating tribute_candles: ' . $conn->error . '</div>';
+        }
+        
+        // Create tribute_rsvp table
+        echo '<div class="info">📦 Creating tribute_rsvp table...</div>';
+        $sql = "CREATE TABLE tribute_rsvp (
+            id INT(11) AUTO_INCREMENT PRIMARY KEY,
+            tribute_id INT(11) NOT NULL,
+            guest_name VARCHAR(255) NOT NULL,
+            guest_phone VARCHAR(50),
+            guest_email VARCHAR(255),
+            number_of_guests INT(11) DEFAULT 1,
+            attendance_type ENUM('physical', 'virtual') DEFAULT 'physical',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        
+        if ($conn->query($sql)) {
+            echo '<div class="success">✅ Created tribute_rsvp table</div>';
+        } else {
+            echo '<div class="error">❌ Error creating tribute_rsvp: ' . $conn->error . '</div>';
+        }
+        
+        // Insert sample tribute
+        echo '<div class="info">📝 Inserting sample tribute...</div>';
+        $sql = "INSERT INTO tributes (
+            creator_user_id, deceased_name, date_of_birth, date_of_death, 
+            location_of_birth, life_story
+        ) VALUES (
+            7, 'Tan Ah Kow', '1945-03-15', '2025-10-15',
+            'Kuala Lumpur, Malaysia',
+            'A loving father, devoted husband, and respected community leader. Mr. Tan dedicated his life to education and served as a principal for over 30 years.'
+        )";
+        
+        if ($conn->query($sql)) {
+            echo '<div class="success">✅ Inserted sample tribute (ID: ' . $conn->insert_id . ')</div>';
+        } else {
+            echo '<div class="error">❌ Error inserting sample: ' . $conn->error . '</div>';
+        }
+        
+        // Re-enable foreign key checks
+        $conn->query("SET FOREIGN_KEY_CHECKS = 1");
+        
+        echo '<div class="success"><h2>🎉 Tribute system database setup complete!</h2></div>';
+        
+        $conn->close();
+    }
+    ?>
+    
+    <div class="info">
+        <h3>📋 What this will do:</h3>
+        <ul>
+            <li>Drop existing tribute tables (if any)</li>
+            <li>Create new tribute system tables:
+                <ul>
+                    <li><strong>tributes</strong> - Main tribute/memorial pages</li>
+                    <li><strong>tribute_messages</strong> - Condolence messages</li>
+                    <li><strong>tribute_photos</strong> - Photo gallery</li>
+                    <li><strong>tribute_candles</strong> - Virtual candles</li>
+                    <li><strong>tribute_rsvp</strong> - Event RSVP registrations</li>
+                </ul>
+            </li>
+            <li>Insert a sample tribute for testing</li>
+        </ul>
+    </div>
+    
+    <form method="POST">
+        <button type="submit">🚀 Setup Tribute Database Tables</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# ============================================
+# PHP Backend Security - .htaccess
+# ============================================
+# This prevents direct access to PHP files
+# ============================================
+
+# Deny direct access to PHP files
+<FilesMatch "\.php$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Allow only through Next.js proxy or specific origins
+# Updated for localhost development
+<If "%{HTTP_REFERER} =~ /localhost:3000|localhost|127.0.0.1/">
+    Allow from all
+</If>
+
+# Alternative: Allow specific IPs (for development)
+# Uncomment if HTTP_REFERER method doesn't work
+# <If "%{REMOTE_ADDR} =~ /127.0.0.1|::1/">
+#     Allow from all
+# </If>
+
+# ============================================
+# Note: This blocks direct HTTP access to PHP files
+# Your Next.js app will still work because it uses
+# /api/backend/* routes, not direct PHP access
+# ============================================

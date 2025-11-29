@@ -1,0 +1,32 @@
+# ============================================
+# PHP Backend Security - .htaccess Template
+# ============================================
+# Copy this file to backend/.htaccess
+# This prevents direct access to PHP files
+# ============================================
+
+# Deny direct access to PHP files
+<FilesMatch "\.php$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Allow only through Next.js proxy or specific origins
+# Update these domains to match your setup
+<If "%{HTTP_REFERER} =~ /localhost:3000|yourdomain.com|vercel.app/">
+    Allow from all
+</If>
+
+# Alternative: Allow specific IPs (for development)
+# <If "%{REMOTE_ADDR} =~ /127.0.0.1|::1/">
+#     Allow from all
+# </If>
+
+# ============================================
+# Instructions:
+# 1. Copy this file to backend/.htaccess
+# 2. Update the domains in the HTTP_REFERER check
+# 3. Test by trying to access backend/createBooking.php directly
+# 4. Should return 403 Forbidden
+# ============================================
+

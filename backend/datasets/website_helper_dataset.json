@@ -1,0 +1,586 @@
+[
+  {
+    "instruction": "How do I create a tribute page?",
+    "response": "Sure thing! Go to the 'Tributes' tab, click 'Create New,' and fill in your loved one's details. You can add photos and even a voice memorial once it's saved."
+  },
+  {
+    "instruction": "What makes this platform different from others?",
+    "response": "We bring everything together in one place. You get beautiful tribute pages, complete funeral service booking, an AI grief counselor, and even a voice memorial where you can chat with your loved one's voice. No other platform combines all of that."
+  },
+  {
+    "instruction": "Do guests need to create an account?",
+    "response": "Nope! There's a 'Continue as Guest' button on the login page. They can view memorials, leave messages, RSVP, donate - everything without creating an account."
+  },
+  {
+    "instruction": "How does the booking system work?",
+    "response": "You browse providers here on the platform, check their packages and calendar, pick a date that works. Add anything extra like flowers or livestreaming, then checkout. Everything's in one place."
+  },
+  {
+    "instruction": "Can I edit the memorial page after creating it?",
+    "response": "Yep! You can edit it anytime. Just go to your Tributes, click on the memorial, and hit Edit. Change photos, update the biography, add new memories whenever you want."
+  },
+  {
+    "instruction": "What's the voice memorial feature?",
+    "response": "It's pretty special - you upload recordings of your loved one (about 10 minutes total), and the AI learns their voice and how they talked. Then you can chat with them, hear them speak to you."
+  },
+  {
+    "instruction": "How do I upload photos?",
+    "response": "When creating or editing a tribute, there's a photo upload section. Click it, select images from your device (JPEG, PNG, GIF, or WebP), and they'll be added to the gallery. Max 5MB per photo."
+  },
+  {
+    "instruction": "Can people leave condolence messages?",
+    "response": "Absolutely. Anyone viewing the tribute page can leave messages - family, friends, even guests without accounts. The messages appear in the condolences section for everyone to read."
+  },
+  {
+    "instruction": "How does live streaming work?",
+    "response": "When booking a funeral service, you can add live streaming as an option. The provider sets it up, and they'll give you a link to share with remote attendees who can't be there in person."
+  },
+  {
+    "instruction": "Is there a mobile app?",
+    "response": "Not a standalone app, but the website works great on phones and tablets. It's fully mobile-responsive, so you can access everything from any device with a browser."
+  },
+  {
+    "instruction": "How do I invite people to view the tribute?",
+    "response": "Each tribute has a unique URL you can share. Copy the link and send it via WhatsApp, email, or social media. Anyone with the link can view it - no account needed."
+  },
+  {
+    "instruction": "What can service providers do on this platform?",
+    "response": "Providers can list their funeral services, create packages, manage their calendar, upload photos of their work, set pricing, and receive bookings directly. They handle everything through their provider dashboard."
+  },
+  {
+    "instruction": "Can I make the tribute page private?",
+    "response": "Yep! When creating the tribute, you can set privacy to public, private, or restricted. Private means only you see it; restricted means only people you invite can view it."
+  },
+  {
+    "instruction": "How do donations work?",
+    "response": "Families can enable donations on the tribute page. Visitors click 'Donate,' enter an amount, and pay securely. The funds go directly to the family or a charity they've specified."
+  },
+  {
+    "instruction": "What's the AI grief counselor?",
+    "response": "We have a grief counselor AI that's available 24/7. It understands Malaysian Buddhist traditions, so it knows about things like the 49-day mourning period. You can talk to it anytime you're struggling - it's private."
+  },
+  {
+    "instruction": "How do I RSVP to a funeral service?",
+    "response": "On the tribute page, there's usually service details with an RSVP button. Click it, fill in your info (or continue as guest), and confirm. The family gets notified of your attendance."
+  },
+  {
+    "instruction": "Can I add videos to the tribute?",
+    "response": "Yep! The photo gallery also supports videos. Upload them the same way you upload photos - just make sure they're not too large. Most common formats work fine."
+  },
+  {
+    "instruction": "How much does this cost?",
+    "response": "For families, everything's included - tribute pages, AI features, booking services, all of it. Providers pay a monthly subscription to list their services on the platform."
+  },
+  {
+    "instruction": "What if I forget my password?",
+    "response": "No worries. On the login page, click 'Forgot Password,' enter your email, and we'll send you a reset link. Follow the instructions to create a new password."
+  },
+  {
+    "instruction": "Can multiple family members manage the same tribute?",
+    "response": "Yes! The person who creates the tribute can invite other family members to be co-managers. They'll have full edit access too. Great for sharing the responsibility."
+  },
+  {
+    "instruction": "How do I delete a tribute page?",
+    "response": "Go to your Tributes, click on the one you want to delete, then look for the Delete option in settings. Be careful - this is permanent and can't be undone."
+  },
+  {
+    "instruction": "What types of funeral services can I book?",
+    "response": "Depends on what providers list, but typically: traditional funerals, Buddhist ceremonies, cremation services, memorial services, and various packages. Browse the 'Order Services' section to see what's available."
+  },
+  {
+    "instruction": "Can guests download photos from the tribute?",
+    "response": "If the family enables it, yes. There's a download button on photos in the gallery. Families can turn this on or off in the tribute settings for privacy."
+  },
+  {
+    "instruction": "How do I contact a service provider?",
+    "response": "When browsing providers, each listing has contact info and usually a message button. You can reach out directly to ask questions before booking."
+  },
+  {
+    "instruction": "What's the checkout process like?",
+    "response": "Pretty straightforward. After selecting your service package and any add-ons, you confirm the date, enter your details, then proceed to payment. We use secure payment processing - your info is safe."
+  },
+  {
+    "instruction": "Can I change the tribute page design?",
+    "response": "The overall design is standardized to keep things clean and respectful, but you control all the content - photos, colors, text, layout preferences. Customization is in the edit options."
+  },
+  {
+    "instruction": "How does the platform make money?",
+    "response": "Service providers pay a monthly subscription to list their offerings and receive bookings. That's it - families use everything at no cost."
+  },
+  {
+    "instruction": "Can I print the tribute page?",
+    "response": "Yep! Use your browser's print function. The page will format nicely for printing. Some families like to have physical copies for keepsakes or to share with elderly relatives."
+  },
+  {
+    "instruction": "What if a provider cancels my booking?",
+    "response": "If a provider cancels, you'll get a full refund and notification immediately. You can then rebook with another provider. It's rare, but we've got safeguards in place."
+  },
+  {
+    "instruction": "How do I update my account information?",
+    "response": "Click your profile icon, go to Account Settings, and you can update your name, email, password, phone number, and notification preferences. Save changes when done."
+  },
+  {
+    "instruction": "Can the tribute page stay online forever?",
+    "response": "Yes! Tributes remain online permanently as long as the platform exists. It's a lasting digital memorial that future generations can access and contribute to."
+  },
+  {
+    "instruction": "How do I add flowers or catering to my booking?",
+    "response": "When booking a service, there's usually an 'Add-ons' section where you can select extras like flowers, catering, programs, transport, etc. Just check what you want and it's added to your total."
+  },
+  {
+    "instruction": "What if I have technical issues?",
+    "response": "There's a help/support section in the footer with FAQs and contact options. You can email support, and someone will get back to you usually within a day."
+  },
+  {
+    "instruction": "Can I schedule when the tribute goes live?",
+    "response": "Not currently - tributes go live as soon as you create them. But you can save them as private initially and change to public when you're ready for others to see it."
+  },
+  {
+    "instruction": "How secure is my payment information?",
+    "response": "Very secure. We use PCI-compliant payment processing, SSL encryption, and don't store your full card details on our servers. Industry-standard security all the way."
+  },
+  {
+    "instruction": "Can I share the tribute on social media?",
+    "response": "Absolutely. There are share buttons on each tribute page for Facebook, WhatsApp, email, and more. You can also just copy the URL and paste it wherever you want."
+  },
+  {
+    "instruction": "What languages is the platform available in?",
+    "response": "Currently English, with plans to add Malay and Mandarin soon. The AI counselor already understands some cultural Mandarin terms though."
+  },
+  {
+    "instruction": "How do I know if someone RSVPed?",
+    "response": "If you created the tribute, you'll see RSVP counts and names in your dashboard. You can also get email notifications when someone confirms attendance."
+  },
+  {
+    "instruction": "Can I add music to the tribute page?",
+    "response": "Not background music currently, but you can upload video clips that include audio, or link to external music platforms in the biography section."
+  },
+  {
+    "instruction": "What if I want to cancel a booking?",
+    "response": "Go to your bookings, select the one you want to cancel, and follow the cancellation process. Refund policies depend on the provider's terms and how far in advance you cancel."
+  },
+  {
+    "instruction": "How do reviews work for providers?",
+    "response": "After a service is completed, families can leave a rating and review. These appear on the provider's profile to help other families make informed decisions."
+  },
+  {
+    "instruction": "Can I get a receipt for my booking?",
+    "response": "Yep! After completing payment, you'll get an email receipt automatically. You can also download receipts from your booking history in your account dashboard."
+  },
+  {
+    "instruction": "What's the AI voice feature exactly?",
+    "response": "You upload about 10 minutes of voice recordings from your loved one. The AI analyzes their voice, tone, and speaking style, then can generate their voice saying things. You can have conversations with them for comfort and closure."
+  },
+  {
+    "instruction": "How do I register as a service provider?",
+    "response": "There's a 'For Providers' link in the footer. Click it, fill out the registration form with your business details, and our team will review and approve your account usually within 2-3 days."
+  },
+  {
+    "instruction": "Can I add multiple service dates?",
+    "response": "When booking, you typically select one main service date. But if there are multiple events (wake, funeral, memorial), you can book each separately or note them in the special instructions."
+  },
+  {
+    "instruction": "What if someone posts inappropriate content on the tribute?",
+    "response": "Tribute owners can moderate comments. There's a delete or report option on each message. We also have content policies and will remove inappropriate content if reported."
+  },
+  {
+    "instruction": "How do I upload voice recordings for the voice memorial?",
+    "response": "When creating or editing a tribute, there's a Voice Memorial section. Click 'Upload Recordings,' select audio files from your device (total ~10 minutes), and the AI will process them. Takes a few hours."
+  },
+  {
+    "instruction": "Can I see who viewed the tribute page?",
+    "response": "You can see view counts and some basic analytics (like most-viewed photos), but we don't track individual viewer identities for privacy reasons. You'll know how many people visited though."
+  },
+  {
+    "instruction": "What file formats are supported for photos?",
+    "response": "JPEG, PNG, GIF, and WebP. Most standard image formats. Keep them under 5MB each for faster loading. The platform will automatically optimize them for web viewing."
+  },
+  {
+    "instruction": "How do I change my booking date?",
+    "response": "Contact the provider directly through the platform's messaging system. They can check availability and update your booking date if possible. Changes depend on their policies and calendar."
+  },
+  {
+    "instruction": "Can I export all the tribute messages and photos?",
+    "response": "Yes! There's a download/export option in tribute settings. You can get a PDF of messages or a ZIP file of all photos and videos. Great for archiving."
+  },
+  {
+    "instruction": "What if I don't know Buddhist traditions?",
+    "response": "No worries! The grief counselor AI can explain traditions if you ask. Also, many service providers offer guidance. You can learn as you go, and the platform helps make it accessible."
+  },
+  {
+    "instruction": "How long does it take to create a tribute?",
+    "response": "About 3-5 minutes for a basic tribute with name, dates, and a photo. You can always come back later to add more - biography, more photos, voice recordings, etc."
+  },
+  {
+    "instruction": "Can family members abroad participate?",
+    "response": "Absolutely. That's one of the main benefits - relatives anywhere in the world can view the tribute, leave messages, watch live streams, donate, and feel connected. Just share the link with them."
+  },
+  {
+    "instruction": "What's the difference between public and restricted tributes?",
+    "response": "Public means anyone with the link can view it (searchable too). Restricted means only people you specifically invite via email can access it. Private is just you. Choose based on your privacy preferences."
+  },
+  {
+    "instruction": "How do I give someone else access to manage the tribute?",
+    "response": "In tribute settings, there's an 'Invite Co-Managers' option. Enter their email, send the invite, and once they accept, they can edit and manage the tribute alongside you."
+  },
+  {
+    "instruction": "Can I schedule posts or updates to the tribute?",
+    "response": "Not currently - updates happen immediately when you save them. But you can draft content elsewhere and paste it in whenever you want to publish it."
+  },
+  {
+    "instruction": "What if the AI grief counselor says something wrong?",
+    "response": "It's AI, so it's not perfect. If it gives unhelpful responses, you can end the chat or rephrase your question. For serious support, we always recommend human counselors too. The AI is a supplement, not a replacement."
+  },
+  {
+    "instruction": "How do I know which provider to choose?",
+    "response": "Check their reviews, photos of past work, package details, and pricing. You can also message them with questions before booking. Choose based on what fits your needs and budget."
+  },
+  {
+    "instruction": "Can I add a timeline of their life?",
+    "response": "Yes! In the biography section, you can structure it as a timeline - birth, major life events, achievements, family milestones, etc. Format it however feels meaningful."
+  },
+  {
+    "instruction": "What happens if I miss a payment to a provider?",
+    "response": "Depends on the provider's policies. Some require upfront payment, others allow payment plans. Communication is key - if you're struggling financially, reach out to them directly to work something out."
+  },
+  {
+    "instruction": "Can I reuse a tribute for multiple services?",
+    "response": "A tribute is for one person, but you can absolutely link multiple service bookings to it - wake, funeral, memorial, 100-day ceremony, etc. All connected to the same tribute page."
+  },
+  {
+    "instruction": "How do I report a problem with a provider?",
+    "response": "There's a 'Report Issue' option on provider profiles. Or email our support team with details. We take complaints seriously and will investigate and mediate if needed."
+  },
+  {
+    "instruction": "What's the refund policy?",
+    "response": "Platform fees are non-refundable, but provider service refunds depend on individual provider policies. Most offer partial refunds if you cancel with enough notice. Check terms before booking."
+  },
+  {
+    "instruction": "Can I embed the tribute on another website?",
+    "response": "Not currently - tributes are hosted here on our platform. But you can link to the tribute page from any website, blog, or social media easily."
+  },
+  {
+    "instruction": "How do I stop email notifications?",
+    "response": "Go to Account Settings, find Notification Preferences, and uncheck what you don't want. You can customize which emails you receive - RSVP alerts, comments, bookings, etc."
+  },
+  {
+    "instruction": "What if someone shares the tribute link without permission?",
+    "response": "If it's set to public or restricted, they can share it. If you want control, use restricted mode and only invite specific people. You can also change privacy settings anytime."
+  },
+  {
+    "instruction": "Can I add a charity link for donations?",
+    "response": "Yep! When setting up donations, you can choose to receive them yourself or redirect to a charity. Just add the charity name and link in the donation section."
+  },
+  {
+    "instruction": "How do I view past bookings?",
+    "response": "Log in, go to your dashboard, and click on Booking History. You'll see all past and upcoming bookings, with receipts and details for each one."
+  },
+  {
+    "instruction": "What if the voice memorial sounds wrong?",
+    "response": "The AI needs clear, varied recordings to work well. If it sounds off, try uploading more samples - different tones, emotions, topics. Quality of input really affects the output."
+  },
+  {
+    "instruction": "Can I add religious verses or prayers?",
+    "response": "Absolutely. The biography and description sections support any text you want - prayers, verses, poems, quotes. Format it nicely and it'll display beautifully on the tribute."
+  },
+  {
+    "instruction": "How do I suggest a new feature?",
+    "response": "We'd love to hear from you! There's a feedback form in the footer, or you can email support with your suggestion. We actively consider user feedback for updates."
+  },
+  {
+    "instruction": "What if I accidentally delete something?",
+    "response": "Unfortunately, deletions are permanent - we don't have an undo feature yet. Be careful with delete buttons. You can always re-upload or re-type content though."
+  },
+  {
+    "instruction": "Can I see how many people donated?",
+    "response": "Yep! In your dashboard, you'll see donation totals, number of donors, and individual amounts (if donors allowed their names to show). All tracked in one place."
+  },
+  {
+    "instruction": "How does the platform handle privacy?",
+    "response": "We take privacy seriously - SSL encryption, secure servers, no selling data. You control tribute visibility, and guest info is only used for functionality, never shared. See our privacy policy for details."
+  },
+  {
+    "instruction": "What if two family members create tributes for the same person?",
+    "response": "That can happen. You can merge them by contacting support, or keep both if they serve different purposes. Communication between family members helps avoid duplication."
+  },
+  {
+    "instruction": "Can I add GPS location for the service?",
+    "response": "Yes! When creating service details, there's a location field. Add the address and we'll embed a map. Guests can click for directions straight to the venue."
+  },
+  {
+    "instruction": "How do I know if my tribute is complete?",
+    "response": "There's no 'complete' - tributes are living memories. You can add to them anytime. That said, having name, dates, photo, and a short bio is a solid start."
+  },
+  {
+    "instruction": "What browsers work best?",
+    "response": "Chrome, Firefox, Safari, and Edge all work great. As long as you're on a recent version, you should have no issues. Mobile browsers work well too."
+  },
+  {
+    "instruction": "Can I get notified when someone leaves a message?",
+    "response": "Yep! In notification settings, enable 'New condolence messages' and you'll get an email each time someone posts. You can turn it off anytime if it gets overwhelming."
+  },
+  {
+    "instruction": "How do I add a QR code to the tribute?",
+    "response": "We auto-generate a QR code for each tribute that you can download. Go to tribute settings, find 'QR Code,' download it, and print it for funeral programs or displays."
+  },
+  {
+    "instruction": "What if I want to upgrade my account?",
+    "response": "Family accounts are already fully featured at no cost. If you're a provider looking to upgrade your listing or features, check the provider dashboard for premium options."
+  },
+  {
+    "instruction": "Can I book services in advance?",
+    "response": "Absolutely. You can browse providers and secure dates even weeks or months ahead if needed. Providers manage their calendars, so book whenever works for you."
+  },
+  {
+    "instruction": "What's the difference between a wake and a funeral service?",
+    "response": "A wake is usually the viewing/visitation before the funeral. The funeral is the main ceremony. Many providers offer packages that include both, or you can book them separately."
+  },
+  {
+    "instruction": "How do I remove a co-manager's access?",
+    "response": "In tribute settings under 'Manage Access,' you'll see a list of co-managers. Click 'Remove' next to their name and confirm. They'll lose edit access immediately."
+  },
+  {
+    "instruction": "Can guests search for tributes?",
+    "response": "If the tribute is set to public, yes - it'll appear in search results by name. Restricted and private tributes are hidden from search and only accessible via direct link."
+  },
+  {
+    "instruction": "What if I want a Buddhist ceremony but don't have a temple?",
+    "response": "Many providers on the platform offer Buddhist ceremony services and can arrange monks, venues, and rituals. Browse providers, filter by religion/tradition, and check their offerings."
+  },
+  {
+    "instruction": "How do I edit service details after booking?",
+    "response": "Contact the provider through the platform's messaging feature. They can update details like time, guest count, or add-ons. Major changes might need rebooking depending on their policies."
+  },
+  {
+    "instruction": "Can I create a tribute before someone passes?",
+    "response": "Technically yes, but that's unusual and might feel uncomfortable. Most people create them after. If you're planning ahead, you could draft content privately and publish it when the time comes."
+  },
+  {
+    "instruction": "What if I have multiple loved ones to honor?",
+    "response": "Create a separate tribute for each person. Each gets their own page, link, and space for memories. You can manage all of them from your dashboard."
+  },
+  {
+    "instruction": "How do I access the grief counselor AI?",
+    "response": "Look for 'Grief Support' in the main menu or your dashboard. Click it, and you'll enter a private chat interface with the AI. It's available 24/7 whenever you need it."
+  },
+  {
+    "instruction": "Can I add a donation goal or target amount?",
+    "response": "Not currently - donations are open-ended. People give what they can. You can mention a suggested amount in the tribute description if you want."
+  },
+  {
+    "instruction": "What if the AI voice memorial makes me sad?",
+    "response": "That's understandable - it can be emotionally intense. You can delete the voice memorial or just not use it. It's there if you want comfort, but no pressure to interact with it if it's too painful."
+  },
+  {
+    "instruction": "How do I know if a provider is reputable?",
+    "response": "Check reviews, ratings, years in business, photos of their work, and response time to messages. Established providers with good reviews are usually safe bets."
+  },
+  {
+    "instruction": "Can I create a tribute in a language other than English?",
+    "response": "Yes! You can write the biography, messages, and details in any language you want. The platform interface is mostly English for now, but content is yours to customize."
+  },
+  {
+    "instruction": "What if I need help setting up the tribute?",
+    "response": "Reach out to our support team via email or the contact form. We can guide you through the setup, answer questions, or even help troubleshoot any issues you're having."
+  },
+  {
+    "instruction": "Can I hide certain photos from public view?",
+    "response": "Not selectively - photos are either in the gallery or not. If you want some private, keep them off the tribute. But you can set the whole tribute to restricted so only invited people see everything."
+  },
+  {
+    "instruction": "How do I add family tree information?",
+    "response": "There's no formal family tree feature, but you can write it into the biography - parents, siblings, spouse, children, grandchildren. Format it however makes sense."
+  },
+  {
+    "instruction": "What if someone wants to contribute to the tribute?",
+    "response": "Make them a co-manager so they can add photos and edit content. Or they can leave messages in the condolence section. Guests can't edit directly, but you can copy their input and add it yourself."
+  },
+  {
+    "instruction": "Can I add a slideshow or photo carousel?",
+    "response": "The photo gallery already displays as a browsable grid. Clicking a photo opens a slideshow view where you can navigate through all images. It's built in."
+  },
+  {
+    "instruction": "What if I want to honor a pet, not a person?",
+    "response": "The platform is designed for people, but there's nothing stopping you from creating a pet tribute. Just fill in their details - it'll work the same way. Many people honor their pets this way."
+  },
+  {
+    "instruction": "How do I get support if I'm having trouble?",
+    "response": "Email our support team via the contact form in the footer, or check the FAQ section for common issues. We usually respond within 24 hours on weekdays."
+  },
+  {
+    "instruction": "Can I link to external memorial sites?",
+    "response": "Yep! In the biography or description sections, you can add links to other memorial sites, obituaries, charity pages, or anywhere else you want people to visit."
+  },
+  {
+    "instruction": "What makes your platform better than traditional funeral homes?",
+    "response": "We're not a replacement - we complement them. We bring everything online in one place: memorials, booking, AI support, voice memories. Funeral homes provide the physical services; we provide the digital hub."
+  },
+  {
+    "instruction": "How do I invite people to RSVP?",
+    "response": "Share the tribute link with them via WhatsApp, email, or social media. When they open it, they'll see the service details and RSVP button. Super simple for guests."
+  },
+  {
+    "instruction": "Can I download a copy of the entire tribute?",
+    "response": "Yep! There's an export feature that generates a PDF of the full tribute (text, photos, messages). Great for archiving or printing for keepsake albums."
+  },
+  {
+    "instruction": "What if I want to add video testimonials?",
+    "response": "Upload them to the photo/video gallery. People can click to watch. If you have many, consider creating a separate section in the bio mentioning 'Scroll down for video memories.'"
+  },
+  {
+    "instruction": "How secure are voice recordings?",
+    "response": "They're stored on secure, encrypted servers and only accessible by you and people you share the voice memorial with. We don't share or use your recordings for anything else."
+  },
+  {
+    "instruction": "Can I feature a charity or cause they cared about?",
+    "response": "Absolutely. In the donation section or biography, mention the charity, add a link, and encourage people to donate in their honor. It's a beautiful way to continue their legacy."
+  },
+  {
+    "instruction": "What if I don't have a photo of them?",
+    "response": "You can create a tribute without a photo, though it's less visually impactful. If you find one later, just edit the tribute and add it. Alternatively, use a symbolic image like flowers or a meaningful place."
+  },
+  {
+    "instruction": "How do I know the booking is confirmed?",
+    "response": "You'll get an email confirmation with all the details - date, time, provider, package, add-ons, total cost. Save it or print it for your records. The provider gets notified too."
+  },
+  {
+    "instruction": "Can I add audio recordings other than voice?",
+    "response": "The voice memorial is specifically for their voice. But you can upload videos with audio, or link to external audio files (like their favorite songs) in the biography section."
+  },
+  {
+    "instruction": "What if the tribute page looks different on mobile?",
+    "response": "It's designed to be responsive, so it adapts to mobile screens. Layout might shift slightly for readability, but all content and features are there. Should look good on any device."
+  },
+  {
+    "instruction": "Can I see statistics like total views or messages?",
+    "response": "Yep! In your dashboard, you'll see analytics: total views, number of condolence messages, RSVPs, donations, photo views, etc. Helps you understand the tribute's reach."
+  },
+  {
+    "instruction": "What if I want to keep the tribute but stop notifications?",
+    "response": "Go to notification settings and turn off alerts for that tribute. The page stays live and people can interact, but you won't get email updates every time something happens."
+  },
+  {
+    "instruction": "How do I feature the tribute on social media without sharing the link?",
+    "response": "You could share a screenshot of the tribute with a message like 'Honoring [Name] - link in bio' or send via DM. But sharing the actual link gives people the full experience."
+  },
+  {
+    "instruction": "Can providers offer discounts or promotions?",
+    "response": "Yes, providers can set their own pricing and promotions. Some offer early booking discounts, package deals, or seasonal pricing. Check individual provider listings for current offers."
+  },
+  {
+    "instruction": "What if I want to add a poem or eulogy?",
+    "response": "Perfect for the biography section. Write or paste the poem/eulogy there. You can format it with line breaks and spacing to make it look beautiful on the page."
+  },
+  {
+    "instruction": "How long does voice memorial processing take?",
+    "response": "Usually a few hours after you upload the recordings. You'll get a notification when it's ready to use. The AI needs time to analyze the voice patterns and build the model."
+  },
+  {
+    "instruction": "Can I create a tribute for someone who died years ago?",
+    "response": "Absolutely. There's no time limit. People create tributes for loved ones who passed decades ago. It's never too late to honor their memory digitally."
+  },
+  {
+    "instruction": "What if I want to archive the tribute after a year?",
+    "response": "You can set it to private so only you can see it, or delete it entirely. But there's no cost to keeping it live, so many people leave them up indefinitely as lasting memorials."
+  },
+  {
+    "instruction": "Can I translate the tribute to another language?",
+    "response": "We don't have automatic translation yet. You'd need to manually write the content in another language or create a second section with translated text. Future feature possibility though!"
+  },
+  {
+    "instruction": "How do I handle family disagreements about tribute content?",
+    "response": "That's tough and unfortunately not something we can mediate. Our suggestion: communicate openly with family, maybe create sections for different perspectives, or use co-manager access so everyone contributes."
+  },
+  {
+    "instruction": "What if someone steals photos from the tribute?",
+    "response": "Photos on public tributes can be saved by anyone. If you're concerned about theft, use restricted privacy settings or add watermarks to images before uploading. We can't prevent public content from being copied."
+  },
+  {
+    "instruction": "Can I add a memory book where people write stories?",
+    "response": "The condolence section functions like that - people can leave long messages sharing stories and memories. You could also create a shared document elsewhere and link to it from the tribute."
+  },
+  {
+    "instruction": "How do I feature their life achievements?",
+    "response": "Write them into the biography - education, career, volunteer work, hobbies, awards. You could format it as a timeline or highlight sections. Make it as detailed as you want."
+  },
+  {
+    "instruction": "What if I want to add a guestbook for the service?",
+    "response": "The condolence section and RSVP function like a digital guestbook. People leave messages and you can see who attended. For a physical guestbook at the service, you'd coordinate that separately."
+  },
+  {
+    "instruction": "Can I create a memorial fund through the platform?",
+    "response": "You can enable donations which function like a memorial fund. People donate, you receive the funds, and you can use them however you see fit - to offset funeral costs, donate to charity, etc."
+  },
+  {
+    "instruction": "What if the tribute has outdated information?",
+    "response": "Just edit it! Click Edit, update whatever needs changing, and save. The tribute is fully editable anytime, so you can keep information current."
+  },
+  {
+    "instruction": "How do I acknowledge people who helped with arrangements?",
+    "response": "You could add a 'Thank You' section in the biography acknowledging helpers by name. Or post a message in the updates section expressing gratitude. Whatever feels right."
+  },
+  {
+    "instruction": "Can I add instructions for the service (dress code, parking)?",
+    "response": "Yep! When adding service details, there's usually a notes or instructions field. Mention dress code, parking, what to bring, special requests - anything guests should know."
+  },
+  {
+    "instruction": "What if I want to honor them annually?",
+    "response": "You can update the tribute each year on their birthday or death anniversary with new messages, photos, or memories. Many families make it a tradition to keep adding to the tribute over time."
+  },
+  {
+    "instruction": "How do I encourage people to share their memories?",
+    "response": "In the tribute description or when sharing the link, add a note like 'Please leave your favorite memory in the condolence section - we'd love to hear your stories.' People usually respond well to direct invitations."
+  },
+  {
+    "instruction": "Can I see who donated and how much?",
+    "response": "You'll see names and amounts for donors who opted to share publicly. Anonymous donors show as 'Anonymous.' All totals are visible in your dashboard along with donor messages if they left any."
+  },
+  {
+    "instruction": "What if I want a specific song played at the service?",
+    "response": "Coordinate that with your service provider when booking. Add it to special instructions or message them directly. They'll handle music arrangements for the actual ceremony."
+  },
+  {
+    "instruction": "How do I make the tribute feel personal and unique?",
+    "response": "Use their favorite colors in photo selections, write in a tone that matches their personality, include inside jokes or stories only close ones would know, add meaningful quotes. Let your love and knowledge of them shine through."
+  },
+  {
+    "instruction": "Can I include religious symbols or imagery?",
+    "response": "Absolutely. Upload photos with religious symbols, add prayers or scripture in the bio, mention faith traditions. The platform supports all religions and cultural practices."
+  },
+  {
+    "instruction": "What's the best way to organize lots of photos?",
+    "response": "The gallery displays them in the order you upload. You could organize chronologically (childhood → recent), by theme (family, work, hobbies), or just randomly. Name files clearly before uploading if order matters."
+  },
+  {
+    "instruction": "How do I handle negative or inappropriate messages?",
+    "response": "Delete them immediately using the delete option next to each message. If it's abusive, you can also report the user. You have full moderation control over content on your tribute."
+  },
+  {
+    "instruction": "Can I preview the tribute before publishing?",
+    "response": "When you create it, it goes live immediately. But if you set it to Private initially, you can view and edit it freely before changing it to Public or Restricted when you're ready."
+  },
+  {
+    "instruction": "What if I want to thank the AI for helping me through grief?",
+    "response": "That's really sweet. The AI is just doing its job, but knowing it helped means the system is working as intended. Consider leaving feedback so we know it's making a difference!"
+  },
+  {
+    "instruction": "How do I close or deactivate my account?",
+    "response": "Contact support with your request to close your account. They'll guide you through the process, including what happens to your tributes (archived or deleted). Account closure is permanent."
+  },
+  {
+    "instruction": "Can I create a group tribute with multiple families contributing?",
+    "response": "Yes! Add multiple co-managers from different families. Everyone with co-manager access can add content, making it a collaborative memorial. Great for honoring someone with a wide community."
+  },
+  {
+    "instruction": "What if I need the tribute urgently for a service happening soon?",
+    "response": "Tribute creation takes just a few minutes. Upload a photo, basic details, and share the link - done. You can always enhance it later with more photos, bio details, and features. Start simple and build from there."
+  },
+  {
+    "instruction": "How do I find inspiration for what to write?",
+    "response": "Think about: their personality, favorite sayings, what made them laugh, how they loved, what they taught you, their passions, defining moments. Write like you're telling a friend about them. Authenticity > perfection."
+  },
+  {
+    "instruction": "Can the platform help with funeral planning beyond booking?",
+    "response": "The AI grief counselor can answer questions about traditions and customs. Providers often offer planning consultations. But for full planning services, you'd coordinate directly with the funeral home or provider you book."
+  }
+]

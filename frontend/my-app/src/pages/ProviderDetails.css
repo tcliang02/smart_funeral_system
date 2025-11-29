@@ -1,0 +1,135 @@
+.provider-details {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  font-family: "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+/* Back link */
+.btn-back {
+  display: inline-block;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.btn-back:hover {
+  color: #f39c12;
+}
+
+/* Provider Header */
+.provider-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.provider-logo-large {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  background: #fafafa;
+  padding: 12px;
+  border: 1px solid #eee;
+}
+
+.provider-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: #2c3e50;
+}
+
+/* Package Grid */
+.package-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
+}
+
+/* Package Card */
+.package-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #fff;
+  padding: 1.8rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  text-align: center;   /* ✅ ensures text is centered */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  min-height: 300px; /* ensures uniform height */
+}
+
+.package-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.package-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.package-card p {
+  flex-grow: 1; /* pushes button down */
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1.2rem;
+}
+
+/* Price */
+.package-card .price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #e67e22;
+  margin: 0.8rem 0 1.5rem;
+}
+
+/* Select Button */
+.btn-select {
+  background-color: #e67e22;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.3s ease;
+  margin-top: auto;
+}
+
+.btn-select:hover {
+  background-color: #d35400;
+}
+
+.btn-catalog {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn-catalog:hover {
+  background-color: #217dbb;
+}
+

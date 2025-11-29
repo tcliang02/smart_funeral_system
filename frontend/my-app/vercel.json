@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "rewrites": [
+    {
+      "source": "/backend/:path*",
+      "destination": "/api/backend/:path*"
+    }
+  ]
+}

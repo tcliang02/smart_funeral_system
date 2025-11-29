@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><title>Test getTributeById</title></head>
+<body>
+<h1>Testing getTributeById.php for tribute ID 2</h1>
+<pre id="output"></pre>
+<div id="image"></div>
+
+<script>
+fetch('/backend/getTributeById.php?id=2')
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+        
+        if (data.photo) {
+            const img = document.createElement('img');
+            img.src = data.photo;
+            img.style.width = '200px';
+            img.style.height = '200px';
+            img.onerror = function() {
+                alert('PHOTO FAILED: ' + data.photo);
+            };
+            img.onload = function() {
+                alert('PHOTO LOADED SUCCESSFULLY: ' + data.photo);
+            };
+            document.getElementById('image').appendChild(img);
+        } else {
+            alert('NO PHOTO FIELD IN RESPONSE!');
+        }
+    });
+</script>
+</body>
+</html>

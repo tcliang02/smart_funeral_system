@@ -1,0 +1,235 @@
+.package-details {
+  max-width: 900px; /* wider for breathing room */
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  font-family: "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+.btn-back {
+  display: inline-block;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.package-header {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.provider-logo {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: #f7f7f7;
+  padding: 12px;
+  border: 1px solid #eee;
+}
+
+.package-header h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.price {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #e67e22;
+  margin: 0.8rem 0;
+}
+
+.features-list {
+  margin: 2rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.features-list li {
+  margin: 0.75rem 0;
+  font-size: 1.05rem;
+  padding-left: 1.8rem;
+  position: relative;
+}
+
+.features-list li::before {
+  content: "✔";
+  color: #27ae60;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.section-title {
+  margin-top: 3rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.addons-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.addon-card {
+  display: flex;
+  flex-direction: column; /* stack content vertically */
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 260px; /* consistent height */
+}
+
+.addon-card h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.addon-card p {
+  flex-grow: 1; /* expand to push button down */
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.addon-card button {
+  margin-top: auto; /* pushes button to bottom */
+  background-color: #e67e22;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 100%; /* make button uniform */
+}
+
+.addon-card button:hover {
+  background-color: #d35400;
+}
+
+
+.summary-box {
+  margin: 3rem 0 2rem;
+  padding: 1.5rem;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.btn-book {
+  background-color: #e67e22;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background 0.3s ease;
+  display: inline-block;
+}
+
+.btn-book:hover {
+  background-color: #d35400;
+}
+
+.btn-remove {
+  background-color: #c0392b !important;
+}
+
+.btn-remove:hover {
+  background-color: #922b21 !important;
+}
+
+.booking-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.booking-form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px; /* keeps it centered and not too wide */
+}
+
+.booking-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+.booking-form label {
+  font-weight: 600;
+  margin-top: 1rem;
+  display: block;
+}
+
+.booking-form input,
+.booking-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.booking-form input:focus,
+.booking-form textarea:focus {
+  outline: none;
+  border-color: #e67e22;
+  box-shadow: 0 0 6px rgba(230, 126, 34, 0.4);
+}
+
+.btn-confirm {
+  display: block;
+  margin: 2rem auto 0;
+  background: #2294e6;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.btn-confirm:hover {
+  background: #e67e22;
+}
+
+
+.success-msg {
+  margin-top: 1rem;
+  color: #27ae60;
+  font-weight: bold;
+}
