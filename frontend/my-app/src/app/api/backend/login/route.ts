@@ -96,16 +96,37 @@ export async function POST(request: NextRequest) {
       stack: error.stack,
       name: error.name,
       code: error.code,
-      detail: error.detail
+      detail: error.detail,
+      originalError: error.originalError
     });
     
-    // Return more detailed error in development, generic in production
-    const errorMessage = process.env.NODE_ENV === 'development' 
-      ? `Login failed: ${error.message}`
-      : 'Login failed. Please try again.';
+    // Check if it's a database connection error
+    const isDbError = error.message?.includes('Database') || 
+                      error.code === 'ENOTFOUND' ||
+                      error.code === 'ECONNREFUSED' ||
+                      error.code === 'ETIMEDOUT';
+    
+    // Return more detailed error in development or for database errors
+    let errorMessage = 'Login failed. Please try again.';
+    if (process.env.NODE_ENV === 'development' || isDbError) {
+      errorMessage = `Login failed: ${error.message}`;
+      if (error.code) {
+        errorMessage += ` (${error.code})`;
+      }
+    }
     
     const serverError = new InternalServerError(errorMessage);
     const errorResponse = formatErrorResponse(serverError);
+    
+    // Add debug info in development
+    if (process.env.NODE_ENV === 'development' || isDbError) {
+      (errorResponse as any).debug = {
+        code: error.code,
+        name: error.name,
+        detail: error.detail
+      };
+    }
+    
     return NextResponse.json(errorResponse, { status: 500 });
   }
 }
