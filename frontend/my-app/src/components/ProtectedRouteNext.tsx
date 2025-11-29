@@ -8,13 +8,20 @@ export type UserRole = 'family' | 'provider' | 'attendee' | 'admin';
 
 interface ProtectedRouteNextProps {
   children: ReactNode;
-  allowedRoles?: string[] | readonly string[] | UserRole[] | readonly UserRole[] | Array<string | UserRole> | ReadonlyArray<string | UserRole> | (string | UserRole)[] | any[] | readonly any[] | any;
+  allowedRoles?: any; // Accept any type to handle array literals, tuples, and arrays
 }
 
 export default function ProtectedRouteNext({ children, allowedRoles = [] }: ProtectedRouteNextProps) {
   const { isAuthenticated, user, loading } = useAuth();
   const router = useRouter();
   const [isChecking, setIsChecking] = useState(true);
+  
+  // Normalize allowedRoles to array for runtime checks
+  const normalizedRoles: string[] = Array.isArray(allowedRoles) 
+    ? allowedRoles.map(role => String(role))
+    : allowedRoles 
+      ? [String(allowedRoles)]
+      : [];
   
   // Always call hooks first - no early returns before hooks
   useEffect(() => {
@@ -34,20 +41,20 @@ export default function ProtectedRouteNext({ children, allowedRoles = [] }: Prot
     }
 
     // 🧱 If logged in but not allowed (role check)
-    if (allowedRoles.length > 0 && user?.role && !allowedRoles.includes(user.role as UserRole)) {
-      console.log('Role not allowed. User role:', user?.role, 'Allowed roles:', allowedRoles);
+    if (normalizedRoles.length > 0 && user?.role && !normalizedRoles.includes(String(user.role))) {
+      console.log('Role not allowed. User role:', user?.role, 'Allowed roles:', normalizedRoles);
       router.push('/unauthorized');
       return;
     }
-  }, [isAuthenticated, user, allowedRoles, router, loading]);
+  }, [isAuthenticated, user, normalizedRoles, router, loading]);
 
   // Debug logging
   console.log('ProtectedRoute check:', {
     isAuthenticated,
     user,
     userRole: user?.role,
-    allowedRoles,
-    roleMatch: user?.role ? allowedRoles.includes(user.role as UserRole) : false,
+    allowedRoles: normalizedRoles,
+    roleMatch: user?.role ? normalizedRoles.includes(String(user.role)) : false,
     loading,
     isChecking
   });
@@ -62,7 +69,7 @@ export default function ProtectedRouteNext({ children, allowedRoles = [] }: Prot
   }
 
   // Show loading while redirecting
-  if (!isAuthenticated || (allowedRoles.length > 0 && user?.role && !allowedRoles.includes(user.role as UserRole))) {
+  if (!isAuthenticated || (normalizedRoles.length > 0 && user?.role && !normalizedRoles.includes(String(user.role)))) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
