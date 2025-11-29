@@ -117,10 +117,10 @@ const publicApiEndpoints = [
   '/api/backend/getProviderAddons', // Public - view provider addons
   '/api/backend/getAddonTemplates', // Public - view addon templates
   '/api/backend/getActiveAddons', // Public - view active addons
-  '/api/backend/getTributes', // Public - tributes are public
+  '/api/backend/getTributes', // Public - tributes are public (auth optional)
   '/api/backend/getTributeById', // Public - viewing tribute is public
   '/api/backend/getTribute', // Public - viewing tribute is public (legacy)
-  '/api/backend/getVoiceMemorials', // Public - view voice memorials
+  '/api/backend/getVoiceMemorials', // Public - view voice memorials (auth optional)
   '/api/backend/getVoiceStatus', // Public - check voice status
   '/api/backend/getMemories', // Public - view memories
   '/api/backend/getTraits', // Public - view personality traits
@@ -134,6 +134,7 @@ const publicApiEndpoints = [
   '/api/backend/chatbot', // Public - website assistant mode (grief mode requires auth)
   '/api/backend/submitContact', // Public - contact form (no login required)
   '/api/backend/submitFeedback', // Public - feedback form (no login required)
+  '/api/backend/test-db', // Public - database connection test
 ];
 
 // ============================================
