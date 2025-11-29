@@ -165,8 +165,20 @@ export async function GET(request: NextRequest) {
     });
 
   } catch (error: any) {
-    logger.error('Get tributes error', { error: error.message, stack: error.stack });
-    const serverError = new InternalServerError('Failed to retrieve tributes');
+    logger.error('Get tributes error', { 
+      error: error.message, 
+      stack: error.stack,
+      name: error.name,
+      code: error.code,
+      detail: error.detail
+    });
+    
+    // Return more detailed error in development, generic in production
+    const errorMessage = process.env.NODE_ENV === 'development' 
+      ? `Failed to retrieve tributes: ${error.message}`
+      : 'Failed to retrieve tributes';
+    
+    const serverError = new InternalServerError(errorMessage);
     const errorResponseData = formatErrorResponse(serverError);
     return NextResponse.json(errorResponseData, { status: getErrorStatusCode(serverError) });
   }

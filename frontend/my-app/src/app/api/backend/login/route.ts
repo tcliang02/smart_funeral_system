@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       )
     );
 
-  } catch (error) {
+  } catch (error: any) {
     // Re-throw AppError instances (they have proper status codes)
     if (error instanceof ValidationError ||
       error instanceof NotFoundError ||
@@ -90,9 +90,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(errorResponse, { status: statusCode });
     }
 
-    // Log unexpected errors
-    logger.error('Login error', error);
-    const serverError = new InternalServerError('Login failed. Please try again.');
+    // Log unexpected errors with full details
+    logger.error('Login error', { 
+      error: error.message, 
+      stack: error.stack,
+      name: error.name,
+      code: error.code,
+      detail: error.detail
+    });
+    
+    // Return more detailed error in development, generic in production
+    const errorMessage = process.env.NODE_ENV === 'development' 
+      ? `Login failed: ${error.message}`
+      : 'Login failed. Please try again.';
+    
+    const serverError = new InternalServerError(errorMessage);
     const errorResponse = formatErrorResponse(serverError);
     return NextResponse.json(errorResponse, { status: 500 });
   }

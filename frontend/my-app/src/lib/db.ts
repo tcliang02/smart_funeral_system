@@ -48,6 +48,25 @@ if (process.env.DATABASE_URL) {
     });
 }
 
+// Validate connection config before creating pool
+if (!connectionConfig.host || !connectionConfig.user || !connectionConfig.database) {
+    const missing = [];
+    if (!connectionConfig.host) missing.push('host');
+    if (!connectionConfig.user) missing.push('user');
+    if (!connectionConfig.database) missing.push('database');
+    
+    logger.error('Database configuration incomplete', { 
+        missing,
+        hasPassword: !!connectionConfig.password,
+        hasDatabaseUrl: !!process.env.DATABASE_URL
+    });
+    
+    throw new Error(
+        `Database configuration incomplete. Missing: ${missing.join(', ')}. ` +
+        `Please set DATABASE_URL or DB_HOST, DB_USER, DB_NAME, DB_PASSWORD environment variables.`
+    );
+}
+
 const pool = new Pool({
     ...connectionConfig,
     // Supabase requires SSL for all connections (dev and production)
@@ -81,9 +100,21 @@ export async function query(text: string, params?: any[]) {
         const duration = Date.now() - start;
         logger.debug('Executed query', { text, duration, rows: res.rowCount });
         return res;
-    } catch (error) {
-        logger.error('Query error', error);
-        throw error;
+    } catch (error: any) {
+        logger.error('Query error', { 
+            error: error.message, 
+            code: error.code,
+            detail: error.detail,
+            hint: error.hint,
+            stack: error.stack
+        });
+        
+        // Re-throw with more context
+        const dbError = new Error(
+            `Database query failed: ${error.message}${error.code ? ` (${error.code})` : ''}`
+        );
+        (dbError as any).originalError = error;
+        throw dbError;
     }
 }
 
