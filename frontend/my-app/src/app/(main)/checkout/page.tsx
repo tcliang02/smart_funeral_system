@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 import ProtectedRouteNext from '../../../components/ProtectedRouteNext';
 import Checkout from '../../../pages/Checkout';
 
-const ALLOWED_ROLES = ['family'] as string[];
+const ALLOWED_ROLES: string[] = ['family'];
 
 export default function CheckoutPage() {
   return (
