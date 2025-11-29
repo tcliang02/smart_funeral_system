@@ -12,7 +12,13 @@ import { logger } from '@/lib/logger';
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    let body;
+    try {
+      body = await request.json();
+    } catch (parseError: any) {
+      throw new ValidationError('Invalid JSON in request body');
+    }
+
     const { username, email, password, role: requestedRole } = body;
 
     // Validation
@@ -54,6 +60,10 @@ export async function POST(request: NextRequest) {
       [username, email, hashedPassword, role]
     );
 
+    if (!result || !result.rows || !result.rows[0]) {
+      throw new InternalServerError('Failed to create user account');
+    }
+
     const userId = result.rows[0].user_id;
 
     // If provider, create service_provider entry
@@ -76,9 +86,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(errorResponseData, { status: getErrorStatusCode(error) });
     }
     
-    // Log unexpected errors
-    logger.error('Registration error', { error: error.message, stack: error.stack });
-    const serverError = new InternalServerError('Registration failed. Please try again.');
+    // Log unexpected errors with full details
+    logger.error('Registration error', { 
+      error: error.message, 
+      stack: error.stack,
+      name: error.name,
+      body: error.body
+    });
+    
+    const serverError = new InternalServerError(
+      error.message || 'Registration failed. Please try again.'
+    );
     const errorResponseData = formatErrorResponse(serverError);
     return NextResponse.json(errorResponseData, { status: getErrorStatusCode(serverError) });
   }

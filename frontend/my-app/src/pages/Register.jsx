@@ -65,7 +65,21 @@ export default function Register() {
         }),
       });
 
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch (parseError) {
+        console.error('Failed to parse response:', parseError);
+        setError("⚠️ Server error: Invalid response format.");
+        return;
+      }
+
+      if (!res.ok) {
+        // Handle HTTP errors (4xx, 5xx)
+        const errorMessage = data?.error?.message || data?.message || `Server error (${res.status})`;
+        setError(`⚠️ ${errorMessage}`);
+        return;
+      }
 
       if (data.success) {
         alert(
@@ -75,11 +89,11 @@ export default function Register() {
         );
         router.push("/login");
       } else {
-        setError(data.message || "Registration failed. Try again.");
+        setError(data.error?.message || data.message || "Registration failed. Try again.");
       }
     } catch (err) {
-      console.error(err);
-      setError("⚠️ Server error. Please ensure XAMPP is running.");
+      console.error('Registration error:', err);
+      setError(err?.message || "Network error. Please check your connection and try again.");
     } finally {
       setLoading(false);
     }
