@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState, ReactNode } from 'react';
 import { useAuth } from '../AuthContext';
 
-type UserRole = 'family' | 'provider' | 'attendee' | 'admin';
+export type UserRole = 'family' | 'provider' | 'attendee' | 'admin';
 
 interface ProtectedRouteNextProps {
   children: ReactNode;
-  allowedRoles?: UserRole[];
+  allowedRoles?: readonly UserRole[] | UserRole[] | (string | UserRole)[];
 }
 
 export default function ProtectedRouteNext({ children, allowedRoles = [] }: ProtectedRouteNextProps) {
