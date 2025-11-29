@@ -17,16 +17,30 @@ let connectionConfig: any = {};
 if (process.env.DATABASE_URL) {
     // If DATABASE_URL is provided, parse it
     // Handle both postgres:// and postgresql:// protocols
-    const dbUrl = process.env.DATABASE_URL.replace(/^postgres:\/\//, 'postgresql://');
-    const url = new URL(dbUrl);
-    connectionConfig = {
-        host: url.hostname,
-        port: parseInt(url.port || '5432'),
-        user: url.username,
-        password: url.password,
-        database: url.pathname.slice(1), // Remove leading /
-    };
-    logger.info('Using DATABASE_URL connection string');
+    try {
+        const dbUrl = process.env.DATABASE_URL.replace(/^postgres:\/\//, 'postgresql://');
+        const url = new URL(dbUrl);
+        connectionConfig = {
+            host: url.hostname,
+            port: parseInt(url.port || '5432'),
+            user: url.username,
+            password: url.password,
+            database: url.pathname.slice(1), // Remove leading /
+        };
+        logger.info('Using DATABASE_URL connection string', {
+            host: connectionConfig.host,
+            port: connectionConfig.port,
+            database: connectionConfig.database,
+            user: connectionConfig.user,
+            hasPassword: !!connectionConfig.password
+        });
+    } catch (parseError: any) {
+        logger.error('Failed to parse DATABASE_URL', {
+            error: parseError.message,
+            databaseUrl: process.env.DATABASE_URL ? '***REDACTED***' : 'NOT SET'
+        });
+        throw new Error(`Invalid DATABASE_URL format: ${parseError.message}`);
+    }
 } else {
     // Use individual environment variables
     // IMPORTANT: Supabase direct connection uses db.[project-ref].supabase.co
@@ -101,13 +115,29 @@ export async function query(text: string, params?: any[]) {
         logger.debug('Executed query', { text, duration, rows: res.rowCount });
         return res;
     } catch (error: any) {
-        logger.error('Query error', { 
-            error: error.message, 
-            code: error.code,
-            detail: error.detail,
-            hint: error.hint,
-            stack: error.stack
-        });
+        // Check for DNS/connection errors
+        const isConnectionError = error.code === 'ENOTFOUND' || 
+                                  error.code === 'ECONNREFUSED' ||
+                                  error.code === 'ETIMEDOUT' ||
+                                  error.message?.includes('getaddrinfo');
+        
+        if (isConnectionError) {
+            logger.error('Database connection failed', {
+                error: error.message,
+                code: error.code,
+                host: connectionConfig.host,
+                port: connectionConfig.port,
+                suggestion: 'Check DATABASE_URL hostname and network connectivity'
+            });
+        } else {
+            logger.error('Query error', { 
+                error: error.message, 
+                code: error.code,
+                detail: error.detail,
+                hint: error.hint,
+                stack: error.stack
+            });
+        }
         
         // Re-throw with more context
         const dbError = new Error(
