@@ -136,12 +136,16 @@ export async function POST(request: NextRequest) {
     
     console.log(`📁 Found ${fileCount} file(s) in FormData:`, fileInfo);
     console.log(`📋 All FormData keys:`, entries.map(([key]) => key));
-    console.log(`📋 All FormData entries:`, entries.map(([key, value]) => ({
-      key,
-      type: value instanceof File ? 'File' : value instanceof Blob ? 'Blob' : typeof value,
-      name: value instanceof File ? value.name : value instanceof Blob ? key : String(value).substring(0, 30),
-      size: value instanceof File || value instanceof Blob ? value.size : undefined
-    })));
+    console.log(`📋 All FormData entries:`, entries.map(([key, value]) => {
+      const isFile = value instanceof File;
+      const isBlob = !isFile && typeof value === 'object' && value !== null && 'size' in value && 'type' in value;
+      return {
+        key,
+        type: isFile ? 'File' : isBlob ? 'Blob' : typeof value,
+        name: isFile ? (value as File).name : isBlob ? key : String(value).substring(0, 30),
+        size: isFile ? (value as File).size : isBlob ? (value as { size: number }).size : undefined
+      };
+    }));
     
     if (fileCount === 0) {
       return NextResponse.json(

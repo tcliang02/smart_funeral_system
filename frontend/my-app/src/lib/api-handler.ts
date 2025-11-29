@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { AppError, formatErrorResponse, getErrorStatusCode } from './errors';
+import { AppError, ValidationError, formatErrorResponse, getErrorStatusCode } from './errors';
 import { successResponse, errorResponse, ApiResponse } from './api-response';
 import { logger } from './logger';
 
@@ -59,7 +59,7 @@ export function validateRequestBody<T>(
   validator: (data: any) => data is T
 ): T {
   if (!validator(body)) {
-    throw new (await import('./errors')).ValidationError(
+    throw new ValidationError(
       'Invalid request body',
       body
     );

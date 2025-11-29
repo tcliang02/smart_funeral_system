@@ -1,10 +1,17 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, ReactNode } from 'react';
 import { useAuth } from '../AuthContext';
 
-export default function ProtectedRouteNext({ children, allowedRoles = [] }) {
+type UserRole = 'family' | 'provider' | 'attendee' | 'admin';
+
+interface ProtectedRouteNextProps {
+  children: ReactNode;
+  allowedRoles?: UserRole[];
+}
+
+export default function ProtectedRouteNext({ children, allowedRoles = [] }: ProtectedRouteNextProps) {
   const { isAuthenticated, user, loading } = useAuth();
   const router = useRouter();
   const [isChecking, setIsChecking] = useState(true);
@@ -27,7 +34,7 @@ export default function ProtectedRouteNext({ children, allowedRoles = [] }) {
     }
 
     // 🧱 If logged in but not allowed (role check)
-    if (allowedRoles.length > 0 && !allowedRoles.includes(user?.role)) {
+    if (allowedRoles.length > 0 && user?.role && !allowedRoles.includes(user.role as UserRole)) {
       console.log('Role not allowed. User role:', user?.role, 'Allowed roles:', allowedRoles);
       router.push('/unauthorized');
       return;
@@ -40,7 +47,7 @@ export default function ProtectedRouteNext({ children, allowedRoles = [] }) {
     user,
     userRole: user?.role,
     allowedRoles,
-    roleMatch: allowedRoles.includes(user?.role),
+    roleMatch: user?.role ? allowedRoles.includes(user.role as UserRole) : false,
     loading,
     isChecking
   });
@@ -55,7 +62,7 @@ export default function ProtectedRouteNext({ children, allowedRoles = [] }) {
   }
 
   // Show loading while redirecting
-  if (!isAuthenticated || (allowedRoles.length > 0 && !allowedRoles.includes(user?.role))) {
+  if (!isAuthenticated || (allowedRoles.length > 0 && user?.role && !allowedRoles.includes(user.role as UserRole))) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>

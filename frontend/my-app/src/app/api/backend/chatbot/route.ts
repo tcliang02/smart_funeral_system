@@ -150,7 +150,8 @@ async function hasAccess(mode: string, userId: number | null): Promise<boolean> 
     }
 
     const modeKey = mode === 'grief' ? 'grief_counselor' : mode === 'website' ? 'website_helper' : mode;
-    const allowedRoles = AI_CONFIG.modes[modeKey]?.access_roles || [];
+    const modeConfig = AI_CONFIG.modes[modeKey as keyof typeof AI_CONFIG.modes];
+    const allowedRoles = modeConfig?.access_roles || [];
     
     return allowedRoles.includes(user.role);
   } catch (error) {
@@ -204,7 +205,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Get mode configuration
-    const modeConfig = AI_CONFIG.modes[modeKey];
+    const modeConfig = AI_CONFIG.modes[modeKey as keyof typeof AI_CONFIG.modes];
     if (!modeConfig) {
       return NextResponse.json(
         { success: false, message: `Invalid mode: ${mode}` },

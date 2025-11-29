@@ -46,9 +46,20 @@ async function callElevenLabsAPI(
   }
 
   try {
+    // Determine MIME type from file extension
+    const ext = fileName.split('.').pop()?.toLowerCase();
+    const mimeType = 
+      ext === 'wav' ? 'audio/wav' :
+      ext === 'mp3' ? 'audio/mpeg' :
+      ext === 'mp4' ? 'audio/mp4' :
+      ext === 'webm' ? 'audio/webm' :
+      ext === 'ogg' ? 'audio/ogg' :
+      ext === 'm4a' ? 'audio/x-m4a' :
+      'audio/mpeg'; // default
+
     const formData = new FormData();
     formData.append('name', voiceName);
-    const blob = new Blob([buffer], { type: mimeType || 'audio/mpeg' });
+    const blob = new Blob([new Uint8Array(buffer)], { type: mimeType });
     formData.append('files', blob, fileName);
 
     const response = await fetch(`${process.env.ELEVENLABS_API_URL ?? 'https://api.elevenlabs.io/v1'}/voices/add`, {
@@ -119,8 +130,7 @@ export async function POST(request: NextRequest) {
     const elevenlabsVoiceId = await callElevenLabsAPI(
       buffer,
       fileName,
-      voiceName,
-      audioSample.type || 'audio/mpeg'
+      voiceName
     );
 
     await ensureVoiceModelsTable();
