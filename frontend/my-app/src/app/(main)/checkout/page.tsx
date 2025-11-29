@@ -6,7 +6,8 @@ import ProtectedRouteNext from '../../../components/ProtectedRouteNext';
 import Checkout from '../../../pages/Checkout';
 
 export default function CheckoutPage() {
-  const allowedRoles: string[] = ['family'];
+  // Use type assertion to ensure TypeScript accepts the array literal
+  const allowedRoles = ['family'] as string[];
   return (
     <ProtectedRouteNext allowedRoles={allowedRoles}>
       <Checkout />

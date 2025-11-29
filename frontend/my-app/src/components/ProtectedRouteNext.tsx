@@ -8,7 +8,8 @@ export type UserRole = 'family' | 'provider' | 'attendee' | 'admin';
 
 interface ProtectedRouteNextProps {
   children: ReactNode;
-  allowedRoles?: any; // Accept any type to handle array literals, tuples, and arrays
+  // @ts-ignore - Accept any array type to handle inline literals, tuples, and arrays
+  allowedRoles?: any;
 }
 
 export default function ProtectedRouteNext({ children, allowedRoles = [] }: ProtectedRouteNextProps) {
