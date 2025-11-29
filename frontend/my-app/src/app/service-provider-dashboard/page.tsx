@@ -7,7 +7,7 @@ import ServiceProviderDashboard from '../../pages/ServiceProviderDashboard';
 
 export default function ServiceProviderDashboardPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['provider']}>
+    <ProtectedRouteNext allowedRoles={['provider'] as any}>
       <ServiceProviderDashboard />
     </ProtectedRouteNext>
   );

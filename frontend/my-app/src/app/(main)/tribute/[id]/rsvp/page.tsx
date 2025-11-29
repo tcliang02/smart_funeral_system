@@ -7,7 +7,7 @@ import TributeRSVPList from '../../../../../pages/TributeRSVPList';
 export default function TributeRSVPListPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <TributeRSVPList id={id} />
     </ProtectedRouteNext>
   );

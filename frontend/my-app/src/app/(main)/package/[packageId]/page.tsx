@@ -7,7 +7,7 @@ import PackageDetails from '../../../../pages/PackageDetails';
 export default function PackageDetailsPage({ params }: { params: Promise<{ packageId: string }> }) {
   const { packageId } = use(params);
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <PackageDetails packageId={packageId} />
     </ProtectedRouteNext>
   );

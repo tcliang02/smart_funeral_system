@@ -9,7 +9,7 @@ export default function ProviderPackageDetailsPage({ params }: { params: Promise
   // PackageDetails expects packageId, so we'll need to handle this differently
   // For now, pass providerId and packageIndex - PackageDetails will need to be updated
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <PackageDetails packageId={packageIndex} />
     </ProtectedRouteNext>
   );

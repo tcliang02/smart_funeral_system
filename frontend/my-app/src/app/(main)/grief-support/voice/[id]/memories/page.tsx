@@ -7,7 +7,7 @@ import MemoryCollection from '../../../../../../pages/MemoryCollection';
 export default function MemoryCollectionPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <MemoryCollection id={id} />
     </ProtectedRouteNext>
   );

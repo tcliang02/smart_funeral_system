@@ -7,7 +7,7 @@ import VoiceManagement from '../../../../../../pages/VoiceManagement';
 export default function VoiceManagementPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <VoiceManagement id={id} />
     </ProtectedRouteNext>
   );

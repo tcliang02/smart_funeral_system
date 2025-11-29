@@ -7,7 +7,7 @@ import ManageAddons from '../../pages/ManageAddons';
 
 export default function ManageAddonsPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['provider']}>
+    <ProtectedRouteNext allowedRoles={['provider'] as any}>
       <ManageAddons />
     </ProtectedRouteNext>
   );

@@ -7,7 +7,7 @@ import TributeCreate from '../../../../pages/TributeCreate';
 
 export default function TributeCreatePage() {
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <TributeCreate />
     </ProtectedRouteNext>
   );

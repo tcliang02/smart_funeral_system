@@ -7,7 +7,7 @@ import OrderServices from '../../../pages/OrderServices';
 
 export default function ServiceProviderPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <OrderServices />
     </ProtectedRouteNext>
   );

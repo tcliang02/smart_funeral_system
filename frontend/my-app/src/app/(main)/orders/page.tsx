@@ -7,7 +7,7 @@ import Orders from '../../../pages/Orders';
 
 export default function OrdersPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <Orders />
     </ProtectedRouteNext>
   );

@@ -4,12 +4,14 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState, ReactNode } from 'react';
 import { useAuth } from '../AuthContext';
 
+// UserRole definition
 export type UserRole = 'family' | 'provider' | 'attendee' | 'admin';
 
 interface ProtectedRouteNextProps {
   children: ReactNode;
-  // @ts-ignore - Accept any array type to handle inline literals, tuples, and arrays
-  allowedRoles?: any;
+  // @ts-ignore - Explicitly allow ANY type to prevent TypeScript errors with inline arrays
+  // This fixes "Type 'string' is not assignable to type 'never'" errors
+  allowedRoles?: any; 
 }
 
 export default function ProtectedRouteNext({ children, allowedRoles = [] }: ProtectedRouteNextProps) {
@@ -17,16 +19,14 @@ export default function ProtectedRouteNext({ children, allowedRoles = [] }: Prot
   const router = useRouter();
   const [isChecking, setIsChecking] = useState(true);
   
-  // Normalize allowedRoles to array for runtime checks
+  // Runtime normalization: Ensure allowedRoles is always a string array
   const normalizedRoles: string[] = Array.isArray(allowedRoles) 
-    ? allowedRoles.map(role => String(role))
+    ? allowedRoles.map(r => String(r)) 
     : allowedRoles 
-      ? [String(allowedRoles)]
+      ? [String(allowedRoles)] 
       : [];
-  
-  // Always call hooks first - no early returns before hooks
+
   useEffect(() => {
-    // Wait for auth to finish loading
     if (loading) {
       setIsChecking(true);
       return;
@@ -34,14 +34,12 @@ export default function ProtectedRouteNext({ children, allowedRoles = [] }: Prot
 
     setIsChecking(false);
 
-    // 🧱 If not logged in, redirect to login page
     if (!isAuthenticated) {
       console.log('Not authenticated, redirecting to login');
       router.push('/login');
       return;
     }
 
-    // 🧱 If logged in but not allowed (role check)
     if (normalizedRoles.length > 0 && user?.role && !normalizedRoles.includes(String(user.role))) {
       console.log('Role not allowed. User role:', user?.role, 'Allowed roles:', normalizedRoles);
       router.push('/unauthorized');
@@ -49,18 +47,6 @@ export default function ProtectedRouteNext({ children, allowedRoles = [] }: Prot
     }
   }, [isAuthenticated, user, normalizedRoles, router, loading]);
 
-  // Debug logging
-  console.log('ProtectedRoute check:', {
-    isAuthenticated,
-    user,
-    userRole: user?.role,
-    allowedRoles: normalizedRoles,
-    roleMatch: user?.role ? normalizedRoles.includes(String(user.role)) : false,
-    loading,
-    isChecking
-  });
-
-  // Show loading state while checking auth
   if (loading || isChecking) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -69,7 +55,6 @@ export default function ProtectedRouteNext({ children, allowedRoles = [] }: Prot
     );
   }
 
-  // Show loading while redirecting
   if (!isAuthenticated || (normalizedRoles.length > 0 && user?.role && !normalizedRoles.includes(String(user.role)))) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -78,8 +63,5 @@ export default function ProtectedRouteNext({ children, allowedRoles = [] }: Prot
     );
   }
 
-  // ✅ Authorized
-  console.log('Access granted!');
   return <>{children}</>;
 }
-

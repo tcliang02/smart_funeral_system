@@ -7,7 +7,7 @@ import ProviderRatings from '../../pages/ProviderRatings';
 
 export default function ProviderRatingsPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['provider']}>
+    <ProtectedRouteNext allowedRoles={['provider'] as any}>
       <ProviderRatings />
     </ProtectedRouteNext>
   );

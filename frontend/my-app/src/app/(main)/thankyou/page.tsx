@@ -7,7 +7,7 @@ import ThankYou from '../../../pages/ThankYou';
 
 export default function ThankYouPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <ThankYou />
     </ProtectedRouteNext>
   );

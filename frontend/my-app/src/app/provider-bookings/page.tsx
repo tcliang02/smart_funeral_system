@@ -7,7 +7,7 @@ import ProviderBookings from '../../pages/ProviderBookings';
 
 export default function ProviderBookingsPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['provider']}>
+    <ProtectedRouteNext allowedRoles={['provider'] as any}>
       <ProviderBookings />
     </ProtectedRouteNext>
   );

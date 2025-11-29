@@ -7,7 +7,7 @@ import VoiceHub from '../../../../pages/VoiceHub';
 
 export default function VoiceHubPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <VoiceHub />
     </ProtectedRouteNext>
   );

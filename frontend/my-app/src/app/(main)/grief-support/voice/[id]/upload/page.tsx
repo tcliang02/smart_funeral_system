@@ -7,7 +7,7 @@ import VoiceUpload from '../../../../../../pages/VoiceUpload';
 export default function VoiceUploadPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <VoiceUpload id={id} />
     </ProtectedRouteNext>
   );

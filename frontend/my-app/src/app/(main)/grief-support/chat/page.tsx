@@ -7,7 +7,7 @@ import AIChatbot from '../../../../pages/AIChatbot';
 
 export default function AIChatbotPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <AIChatbot />
     </ProtectedRouteNext>
   );

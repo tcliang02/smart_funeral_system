@@ -7,7 +7,7 @@ import ProviderAvailabilityPage from '../../../../../pages/ProviderAvailabilityP
 export default function ProviderAvailabilityPageRoute({ params }: { params: Promise<{ providerId: string }> }) {
   const { providerId } = use(params);
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <ProviderAvailabilityPage providerId={providerId} />
     </ProtectedRouteNext>
   );

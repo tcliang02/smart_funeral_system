@@ -7,7 +7,7 @@ import ProfileSettings from '../../pages/ProfileSettings';
 
 export default function ProfileSettingsPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['family', 'attendee', 'provider', 'admin']}>
+    <ProtectedRouteNext allowedRoles={['family', 'attendee', 'provider', 'admin'] as any}>
       <ProfileSettings />
     </ProtectedRouteNext>
   );

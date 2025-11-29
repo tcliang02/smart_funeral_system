@@ -7,7 +7,7 @@ import CustomerRatings from '../../../pages/CustomerRatings';
 
 export default function CustomerRatingsPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <CustomerRatings />
     </ProtectedRouteNext>
   );

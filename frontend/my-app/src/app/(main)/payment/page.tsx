@@ -7,7 +7,7 @@ import Payment from '../../../pages/Payment';
 
 export default function PaymentPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['family']}>
+    <ProtectedRouteNext allowedRoles={['family'] as any}>
       <Payment />
     </ProtectedRouteNext>
   );

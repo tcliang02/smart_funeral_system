@@ -9,7 +9,7 @@ export const revalidate = 0;
 
 export default function ManagePackagesPage() {
   return (
-    <ProtectedRouteNext allowedRoles={['provider']}>
+    <ProtectedRouteNext allowedRoles={['provider'] as any}>
       <ManagePackages />
     </ProtectedRouteNext>
   );
